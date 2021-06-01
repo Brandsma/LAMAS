@@ -7,6 +7,11 @@ class Eavesdropper(Agent):
         super().__init__(name)
 
     def listen(self):
-        self.tick()
         message = self.connection.listen()
-        self.message_list.append(message)
+        if message != None:
+            self.set_clock(message.clock)
+            self.tick()
+            self.message_list.append(message)
+
+    def step(self, physical_time):
+        self.listen()

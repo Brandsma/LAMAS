@@ -8,13 +8,13 @@ from logic.state import State
 from logic.kripkeModel import KripkeModel
 from logic.logic_demo import logic_demo
 from communication import communication_demo
+import logging
 
-
-log = setup_logger(__name__)
+log = setup_logger(__name__, logging.WARNING)
 
 def main():
     log.info("Starting program...")
-    logic_demo()
+    #logic_demo()
     communication_demo()
 
 
