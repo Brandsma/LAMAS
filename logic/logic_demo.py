@@ -6,17 +6,16 @@ from logic.atom_formula import Atom
 from logic.implies_formula import Implies
 from logic.state import State
 from logic.kripkeModel import KripkeModel
-from logic.logic_demo import logic_demo
-from communication import communication_demo
-
 
 log = setup_logger(__name__)
 
-def main():
-    log.info("Starting program...")
-    logic_demo()
-    communication_demo()
+def logic_demo():
+    log.info("Logic demo")
+    and_form = Implies(And(Not(Atom(True)), Or(
+        Not(Atom(False)), Atom(True))), Atom(True))
+    print(str(and_form))
 
+    state = State("12345")
+    model = KripkeModel([], [])
 
-if __name__ == "__main__":
-    main()
+    print(and_form.evaluate(model, state))
