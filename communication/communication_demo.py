@@ -6,7 +6,7 @@ from .sender import Sender
 from .receiver import Receiver
 from .eavesdropper import Eavesdropper
 from .stepper import Stepper
-
+import config
 log = setup_logger(__name__)
 
 
@@ -46,7 +46,7 @@ def communication_demo():
 
     # Message passing
     print_all(agents)
-    stepper.start(100)
+    stepper.start(config.stepper_time_limit)
     #     # alice sends message to the channel
     # alice.send() # generic function, sends last message from the list. 
     #     # message is now in the input buffer
@@ -63,7 +63,7 @@ def communication_demo():
 
 
 def log_to_file(state_log):
-    f = open("log_trace.txt", "w")
+    f = open(config.log_trace_filename, "w")
     for state in state_log:
         f.write(state + "\n")
     f.close()

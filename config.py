@@ -1,4 +1,6 @@
 # Configs
+stepper_time_limit = 100
+log_trace_filename = "log_trace.txt"
 
 # failure types true/false
 
