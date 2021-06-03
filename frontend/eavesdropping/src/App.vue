@@ -1,21 +1,43 @@
 <template>
-  <div class="navbar topBottomBordersIn">
-    <router-link
-      :class="{ button: true, activebutton: $route.name === 'Home' }"
-      :to="{ name: 'Home' }"
-      >Home</router-link
-    >
-    |
-    <router-link
-      :class="{ button: true, activebutton: $route.name === 'Simulation' }"
-      :to="{ name: 'Simulation' }"
-      >Simulation</router-link
-    >
-  </div>
-  <div class="view">
-    <transition name="fade" mode="out-in">
-      <router-view />
-    </transition>
+  <div>
+    <div class="navbar topBottomBordersIn">
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Home' }"
+        :to="{ name: 'Home' }"
+        >Home</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Formalism' }"
+        :to="{ name: 'Formalism' }"
+        >Formalism</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Methods' }"
+        :to="{ name: 'Methods' }"
+        >Methods</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Simulation' }"
+        :to="{ name: 'Simulation' }"
+        >Simulation</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Discussion' }"
+        :to="{ name: 'Discussion' }"
+        >Discussion</router-link
+      >
+    </div>
+    <div class="view">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
+    </div>
   </div>
 </template>
 
@@ -48,7 +70,7 @@ body {
   align-items: center;
   flex: 1;
   flex-direction: column;
-  padding: 3em 6em;
+  padding: 3em 20em;
   background-color: white;
 }
 

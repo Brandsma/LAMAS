@@ -12,14 +12,14 @@ log = setup_logger(__name__)
 
 def communication_demo():
     log.info("Communication demo")
-    
+
     # Required entities
     alice = Sender("Alice")
     bob = Receiver("Bob")
     eve = Eavesdropper("Eve")
     agents = [alice, bob, eve]
-    fc = Channel("forward") # forward-channel
-    bc = Channel("backward") # backward-channel
+    fc = Channel("forward")  # forward-channel
+    bc = Channel("backward")  # backward-channel
 
     stepper = Stepper()
     stepper.add_all_processes([alice, eve, bob, fc, bc])
@@ -48,13 +48,13 @@ def communication_demo():
     print_all(agents)
     stepper.start(config.stepper_time_limit)
     #     # alice sends message to the channel
-    # alice.send() # generic function, sends last message from the list. 
+    # alice.send() # generic function, sends last message from the list.
     #     # message is now in the input buffer
     # fc.send() # move message from input_buffer to chute
     #     # input buffer is now free for a new message, message in the chute
     # eve.listen() # eavesdropper receives a* message from the chute
     # fc.receive() # move message from chute to output_buffer
-    #     # message is now in the output buffer, ready to be read by bob, and no longer 
+    #     # message is now in the output buffer, ready to be read by bob, and no longer
     # bob.receive()
     print_all(agents)
     for item in stepper.state_log:
@@ -64,9 +64,11 @@ def communication_demo():
 
 def log_to_file(state_log):
     f = open(config.log_trace_filename, "w")
+    f.write("time | clock | agent | input | output | message list\n")
     for state in state_log:
         f.write(state + "\n")
     f.close()
+
 
 def print_all(agents):
     for agent in agents:
