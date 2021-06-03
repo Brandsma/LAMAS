@@ -1,6 +1,11 @@
+import logging
+loglevel = logging.WARNING
+
 # Configs
 stepper_time_limit = 100
 log_trace_filename = "log_trace.txt"
+save_log_to_file = True
+print_log_to_terminal = False
 
 # failure types true/false
 

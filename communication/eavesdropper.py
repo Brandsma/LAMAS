@@ -13,5 +13,9 @@ class Eavesdropper(Agent):
             self.tick()
             self.message_list.append(message)
 
+    def public_announcement(self):
+        # TODO
+        pass
+
     def step(self, physical_time):
         self.listen()

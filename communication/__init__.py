@@ -1,3 +1,7 @@
+import config
+from logger import setup_logger
+log = setup_logger(__name__, level=config.loglevel)
+
 from .agent import Agent
 from .channel import Channel
 from .message import Message

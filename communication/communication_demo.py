@@ -7,8 +7,7 @@ from .receiver import Receiver
 from .eavesdropper import Eavesdropper
 from .stepper import Stepper
 import config
-log = setup_logger(__name__)
-
+from communication import log
 
 def communication_demo():
     log.info("Communication demo")
@@ -57,9 +56,12 @@ def communication_demo():
     #     # message is now in the output buffer, ready to be read by bob, and no longer
     # bob.receive()
     print_all(agents)
-    for item in stepper.state_log:
-        print(item)
-    log_to_file(stepper.state_log)
+    if config.print_log_to_terminal:
+        for item in stepper.state_log:
+            print(item)
+            
+    if config.save_log_to_file:
+        log_to_file(stepper.state_log)
 
 
 def log_to_file(state_log):

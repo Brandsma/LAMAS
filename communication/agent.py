@@ -1,10 +1,8 @@
 from communication.channel import Channel
 from communication.message import Message
 from communication.process import Process
-from logger import setup_logger
-import logging
+from communication import log
 import config
-log = setup_logger(__name__, level=logging.WARNING)
 
 
 class Agent(Process):
@@ -15,6 +13,7 @@ class Agent(Process):
         self.connection = None
         self.back_connection = None
         self.message_list = []
+        self.knowledge = []
         self.output_buffer = None
         self.input_buffer = None
 
@@ -42,10 +41,11 @@ class Agent(Process):
                     "Something went wrong, unexpected acknowledge levels in sender buffers.")
 
     def state(self):
-        return " clock: {}|{}|{}|{}|{}".format(self.clock, self.name,
-                                               self.read_buffer(self.input_buffer), self.read_buffer(
-                                                   self.output_buffer),
-                                               [m.read() for m in self.message_list])
+        return " clock: {}|{}|{}|{}|{}".format( 
+            self.clock, self.name,
+            self.read_buffer(self.input_buffer), self.read_buffer(
+            self.output_buffer),
+            [m.read() for m in self.message_list])
 
     def read_buffer(self, buffer):
         if buffer == None:
@@ -54,8 +54,8 @@ class Agent(Process):
             return (buffer.content, buffer.acknowledge_level)
 
     def print_buffers(self):
-        print("agent {} input: {} output: {}".format(self.name,
-                                                     self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer)))
+        print("agent {} input: {} output: {}".format(
+            self.name, self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer)))
 
     def print_messages(self):
         messages = [message.read() for message in self.message_list]

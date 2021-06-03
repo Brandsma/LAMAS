@@ -1,9 +1,6 @@
-from logger import setup_logger
-import logging
 from communication.message import Message
 from communication.process import Process
-
-log = setup_logger(__name__, level=logging.WARNING)
+from communication import log
 
 
 class Channel(Process):
