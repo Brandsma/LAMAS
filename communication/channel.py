@@ -69,7 +69,7 @@ class Channel(Process):
     def state(self):
         return " clock: {}| A: {}| in: {}| out: {}| chute: {}|".format(self.clock, self.name, \
             self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer), \
-                [m.read() for m in self.chute])
+                [(m.read(), m.acknowledge_level) for m in self.chute])
 
     def read_buffer(self, buffer):
         if buffer == None:
