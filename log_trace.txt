@@ -1,0 +1,105 @@
+t: 0| clock: 0| A: Alice| in: (None, None)| out: (None, None)| m_l: ['A', 'B', 'C']|
+t: 0| clock: 0| A: Eve| in: (None, None)| out: (None, None)| m_l: []|
+t: 0| clock: 0| A: Bob| in: (None, None)| out: (None, None)| m_l: []|
+t: 0| clock: 0| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 0| clock: 0| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 0| clock: 1| A: Alice| in: (None, None)| out: ('C', 0)| m_l: ['A', 'B']|
+t: 1| clock: 0| A: Eve| in: (None, None)| out: (None, None)| m_l: []|
+t: 2| clock: 0| A: Bob| in: (None, None)| out: (None, None)| m_l: []|
+t: 3| clock: 5| A: forward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 4| clock: 1| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 5| clock: 1| A: Alice| in: (None, None)| out: ('C', 0)| m_l: ['A', 'B']|
+t: 6| clock: 7| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C']|
+t: 7| clock: 0| A: Bob| in: (None, None)| out: (None, None)| m_l: []|
+t: 8| clock: 8| A: forward| in: (None, None)| out: ('C', 0)| chute: []|
+t: 9| clock: 2| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 10| clock: 1| A: Alice| in: (None, None)| out: ('C', 0)| m_l: ['A', 'B']|
+t: 11| clock: 7| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C']|
+t: 12| clock: 11| A: Bob| in: ('C', 0)| out: ('C', 1)| m_l: ['C']|
+t: 13| clock: 10| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 14| clock: 13| A: backward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 15| clock: 1| A: Alice| in: (None, None)| out: ('C', 0)| m_l: ['A', 'B']|
+t: 16| clock: 7| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C']|
+t: 17| clock: 11| A: Bob| in: ('C', 0)| out: ('C', 1)| m_l: ['C']|
+t: 18| clock: 12| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 19| clock: 15| A: backward| in: (None, None)| out: ('C', 1)| chute: []|
+t: 20| clock: 18| A: Alice| in: (None, None)| out: ('C', 2)| m_l: ['A', 'B']|
+t: 21| clock: 7| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C']|
+t: 22| clock: 11| A: Bob| in: ('C', 0)| out: ('C', 1)| m_l: ['C']|
+t: 23| clock: 22| A: forward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 24| clock: 16| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 25| clock: 18| A: Alice| in: (None, None)| out: ('C', 2)| m_l: ['A', 'B']|
+t: 26| clock: 24| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C']|
+t: 27| clock: 11| A: Bob| in: ('C', 0)| out: ('C', 1)| m_l: ['C']|
+t: 28| clock: 25| A: forward| in: (None, None)| out: ('C', 2)| chute: []|
+t: 29| clock: 17| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 30| clock: 18| A: Alice| in: (None, None)| out: ('C', 2)| m_l: ['A', 'B']|
+t: 31| clock: 24| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C']|
+t: 32| clock: 28| A: Bob| in: ('C', 2)| out: ('C', 3)| m_l: ['C']|
+t: 33| clock: 27| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 34| clock: 30| A: backward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 35| clock: 18| A: Alice| in: (None, None)| out: ('C', 2)| m_l: ['A', 'B']|
+t: 36| clock: 24| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C']|
+t: 37| clock: 28| A: Bob| in: ('C', 2)| out: ('C', 3)| m_l: ['C']|
+t: 38| clock: 29| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 39| clock: 32| A: backward| in: (None, None)| out: ('C', 3)| chute: []|
+t: 40| clock: 35| A: Alice| in: (None, None)| out: ('C', 4)| m_l: ['A', 'B']|
+t: 41| clock: 24| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C']|
+t: 42| clock: 28| A: Bob| in: ('C', 2)| out: ('C', 3)| m_l: ['C']|
+t: 43| clock: 39| A: forward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 44| clock: 33| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 45| clock: 35| A: Alice| in: (None, None)| out: ('C', 4)| m_l: ['A', 'B']|
+t: 46| clock: 41| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C']|
+t: 47| clock: 28| A: Bob| in: ('C', 2)| out: ('C', 3)| m_l: ['C']|
+t: 48| clock: 42| A: forward| in: (None, None)| out: ('C', 4)| chute: []|
+t: 49| clock: 34| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 50| clock: 35| A: Alice| in: (None, None)| out: ('C', 4)| m_l: ['A', 'B']|
+t: 51| clock: 41| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C']|
+t: 52| clock: 45| A: Bob| in: ('C', 4)| out: ('C', 5)| m_l: ['C']|
+t: 53| clock: 44| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 54| clock: 47| A: backward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 55| clock: 35| A: Alice| in: (None, None)| out: ('C', 4)| m_l: ['A', 'B']|
+t: 56| clock: 41| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C']|
+t: 57| clock: 45| A: Bob| in: ('C', 4)| out: ('C', 5)| m_l: ['C']|
+t: 58| clock: 46| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 59| clock: 49| A: backward| in: (None, None)| out: ('C', 5)| chute: []|
+t: 60| clock: 52| A: Alice| in: (None, None)| out: ('C', 6)| m_l: ['A', 'B']|
+t: 61| clock: 41| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C']|
+t: 62| clock: 45| A: Bob| in: ('C', 4)| out: ('C', 5)| m_l: ['C']|
+t: 63| clock: 56| A: forward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 64| clock: 50| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 65| clock: 52| A: Alice| in: (None, None)| out: ('C', 6)| m_l: ['A', 'B']|
+t: 66| clock: 58| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C']|
+t: 67| clock: 45| A: Bob| in: ('C', 4)| out: ('C', 5)| m_l: ['C']|
+t: 68| clock: 59| A: forward| in: (None, None)| out: ('C', 6)| chute: []|
+t: 69| clock: 51| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 70| clock: 52| A: Alice| in: (None, None)| out: ('C', 6)| m_l: ['A', 'B']|
+t: 71| clock: 58| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C']|
+t: 72| clock: 62| A: Bob| in: ('C', 6)| out: ('C', 7)| m_l: ['C']|
+t: 73| clock: 61| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 74| clock: 64| A: backward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 75| clock: 52| A: Alice| in: (None, None)| out: ('C', 6)| m_l: ['A', 'B']|
+t: 76| clock: 58| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C']|
+t: 77| clock: 62| A: Bob| in: ('C', 6)| out: ('C', 7)| m_l: ['C']|
+t: 78| clock: 63| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 79| clock: 66| A: backward| in: (None, None)| out: ('C', 7)| chute: []|
+t: 80| clock: 69| A: Alice| in: (None, None)| out: ('C', 8)| m_l: ['A', 'B']|
+t: 81| clock: 58| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C']|
+t: 82| clock: 62| A: Bob| in: ('C', 6)| out: ('C', 7)| m_l: ['C']|
+t: 83| clock: 73| A: forward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 84| clock: 67| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 85| clock: 69| A: Alice| in: (None, None)| out: ('C', 8)| m_l: ['A', 'B']|
+t: 86| clock: 75| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C', 'C']|
+t: 87| clock: 62| A: Bob| in: ('C', 6)| out: ('C', 7)| m_l: ['C']|
+t: 88| clock: 76| A: forward| in: (None, None)| out: ('C', 8)| chute: []|
+t: 89| clock: 68| A: backward| in: (None, None)| out: (None, None)| chute: []|
+t: 90| clock: 69| A: Alice| in: (None, None)| out: ('C', 8)| m_l: ['A', 'B']|
+t: 91| clock: 75| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C', 'C']|
+t: 92| clock: 79| A: Bob| in: ('C', 8)| out: ('C', 9)| m_l: ['C']|
+t: 93| clock: 78| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 94| clock: 81| A: backward| in: (None, None)| out: (None, None)| chute: ['C']|
+t: 95| clock: 69| A: Alice| in: (None, None)| out: ('C', 8)| m_l: ['A', 'B']|
+t: 96| clock: 75| A: Eve| in: (None, None)| out: (None, None)| m_l: ['C', 'C', 'C', 'C', 'C']|
+t: 97| clock: 79| A: Bob| in: ('C', 8)| out: ('C', 9)| m_l: ['C']|
+t: 98| clock: 80| A: forward| in: (None, None)| out: (None, None)| chute: []|
+t: 99| clock: 83| A: backward| in: (None, None)| out: ('C', 9)| chute: []|

@@ -2,8 +2,9 @@ from communication.channel import Channel
 from communication.message import Message
 from communication.process import Process
 from logger import setup_logger
+import logging
 import config
-log = setup_logger(__name__)
+log = setup_logger(__name__, level = logging.WARNING)
 
 class Agent(Process):
 
@@ -24,19 +25,32 @@ class Agent(Process):
 
     def acknowledge_input(self):
         # If there is a message in the input and the output, see if one acknowledges the other and stop sending
-        print("agent {} input: {} output: {}".format(self.name, self.input_buffer, self.output_buffer))
+        log.info(self.print_buffers())
         if (self.output_buffer != None and self.input_buffer != None):
-            print("{} {}".format(self.input_buffer.acknowledge_level, self.output_buffer.acknowledge().acknowledge_level))
-            if (self.input_buffer.acknowledge_level == self.output_buffer.acknowledge().acknowledge_level): # "I can stop sending this message, it has been acknowledged"
+            if (self.input_buffer == self.output_buffer.acknowledge()): # "I can stop sending this message, it has been acknowledged"
                 if (self.input_buffer.acknowledge_level < config.acknowledge_depth):
                     self.output_buffer = self.input_buffer.acknowledge()
                 else :
                     self.output_buffer = None
-                print("OUTPUT BUFFER CHANGED")
+                log.info("Output buffer changed.")
                 self.input_buffer = None
             else :
                log.info("Something went wrong, unexpected acknowledge levels in sender buffers.")
 
+    def state(self):
+        return " clock: {}| A: {}| in: {}| out: {}| m_l: {}|".format(self.clock, self.name, \
+            self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer), \
+                [m.read() for m in self.message_list])
+
+    def read_buffer(self, buffer):
+        if buffer == None:
+            return (None, None)
+        else :
+            return (buffer.content, buffer.acknowledge_level)
+
+    def print_buffers(self):
+        print("agent {} input: {} output: {}".format(self.name, \
+            self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer)))
 
     def print_messages(self):
         messages = [message.read() for message in self.message_list]

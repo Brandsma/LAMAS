@@ -19,3 +19,6 @@ class Process:
 
     def log_event(self, event):
         self.event_log.append(event)
+
+    def state(self):
+        pass

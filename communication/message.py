@@ -9,6 +9,15 @@ class Message(Process): # Is a message really a process? I don't know, but its u
         self.clock = clock
         self.acknowledge_level = acknowledge_level
 
+    def __eq__(self, other):  
+        if isinstance(other, self.__class__):
+            return self.content == other.content and self.acknowledge_level == other.acknowledge_level
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def read(self) -> str:
         return self.content
 

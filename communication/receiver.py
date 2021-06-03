@@ -1,7 +1,8 @@
 from logger import setup_logger
 from communication.agent import Agent
 import config
-log = setup_logger(__name__)
+import logging
+log = setup_logger(__name__, level = logging.WARNING)
 
 class Receiver(Agent):
 

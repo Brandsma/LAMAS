@@ -1,13 +1,15 @@
 from logger import setup_logger
+import logging
 from communication.message import Message
 from communication.process import Process
 
-log = setup_logger(__name__)
+log = setup_logger(__name__, level = logging.WARNING)
 
 class Channel(Process):
 
-    def __init__(self):
+    def __init__(self, name):
         super().__init__()
+        self.name = name
         self.input_buffer = None
         self.chute = []
         self.output_buffer = None
@@ -45,12 +47,12 @@ class Channel(Process):
             log.info("No message in chute to receive.")
         else :
             self.output_buffer = self.chute[-1].event(self.clock)
-            self.chute.pop()
+            self.chute.pop() #TODO
             
     def read(self) -> Message: # receive from channel, performed by receiver
         self.tick()
         if self.output_buffer == None:
-            log.info("No message in output buffer to read, returning None.")
+            log.debug("No message in output buffer to read, returning None.")
             return None # Yeah I know, solve later
         else :
             message = self.output_buffer.event(self.clock)
@@ -64,10 +66,23 @@ class Channel(Process):
         if self.input_buffer != None:
             self.send()
 
+    def state(self):
+        return " clock: {}| A: {}| in: {}| out: {}| chute: {}|".format(self.clock, self.name, \
+            self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer), \
+                [m.read() for m in self.chute])
+
+    def read_buffer(self, buffer):
+        if buffer == None:
+            return (None, None)
+        else :
+            return (buffer.content, buffer.acknowledge_level)
+
     def print_status(self):
         inp = None if self.input_buffer == None else self.input_buffer.read()
+        inp_ack = None if self.input_buffer == None else self.input_buffer.acknowledge_level
         out = None if self.output_buffer == None else self.output_buffer.read()
+        out_ack = None if self.output_buffer == None else self.output_buffer.acknowledge_level
         chu = [m.read() for m in self.chute]
 
-        print("Channel status: clock {} | inputbuffer {} | chute {} | outputbuffer {}"\
-            .format(self.clock, inp, chu, out))
+        print("Channel status: clock {} | inputbuffer {} {}| chute {} | outputbuffer {} {}"\
+            .format(self.clock, inp, inp_ack, chu, out, out_ack))
