@@ -1,5 +1,5 @@
 from communication.agent import Agent
-
+import config
 
 class Eavesdropper(Agent):
 
@@ -18,4 +18,6 @@ class Eavesdropper(Agent):
         pass
 
     def step(self, physical_time):
-        self.listen()
+        if self.step_counter % config.eavesdropper_listen_rate == 0:
+            self.listen()
+        self.step_counter += 1

@@ -28,6 +28,6 @@ class Receiver(Agent):
     def step(self, physical_time):
         self.receive()
         self.acknowledge_input()
-        if physical_time % config.message_timeout == 0:
+        if self.step_counter % config.message_timeout == 0:
             self.send()
 

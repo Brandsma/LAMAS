@@ -38,7 +38,7 @@ class Sender(Agent):
         self.acknowledge_input()
         if self.output_buffer == None:
             self.new_message()
-        if physical_time % config.message_timeout == 0:
+        if self.step_counter % config.message_timeout == 0:
             self.send()
 
     def import_messages(self, messages):
