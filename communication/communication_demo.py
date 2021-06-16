@@ -32,7 +32,7 @@ def communication_demo():
     eve.connect_back(bc)
 
     # Create dummy messages
-    m_a, m_b, m_c = Message("A"), Message("B"), Message("C")
+    m_a, m_b, m_c = Message("Are my apples still okay?"), Message("Bravery is a fools honour."), Message("Can you please just not?")
     messages = [m_a, m_b, m_c]
 
     m = Message("hallo")

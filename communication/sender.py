@@ -17,25 +17,35 @@ class Sender(Agent):
             self.output_buffer = self.message_list[-1].event(self.clock)
             self.message_list.pop()
 
-    def send(self):
+    def send_message(self, message):
         self.tick()
-        if self.output_buffer != None:
-            self.connection.write(self.output_buffer.event(self.clock))
-        else :
-            log.info("Output buffer empty, no new message passed to channel.")
+        self.connection.write(message.event(self.clock))
 
-    def receive(self):
-        message = self.back_connection.read()
-        if message != None:
-            if self.input_buffer != None:
-                log.warning("Input buffer full, buffer overwritten.")
-            self.set_clock(message.clock)
-            self.tick()
-            self.input_buffer = message
+    def receive_message(self):
+        return self.back_connection.read()
+
+    def acknowledge_input(self):
+        # If there is a message in the input and the output, see if one acknowledges the other and stop sending
+        log.info(self.print_buffers())
+        if (self.output_buffer != None and self.input_buffer != None):
+            # "I can stop sending this message, it has been acknowledged"
+            if (self.input_buffer == self.output_buffer.acknowledge()):
+                if (self.input_buffer.acknowledge_level < config.acknowledge_depth):
+                    self.output_buffer = self.input_buffer.acknowledge()
+                else:
+                    self.output_buffer = None
+                log.info("Output buffer changed.")
+                self.input_buffer = None
+            else:
+                log.info(
+                    "Something went wrong, unexpected acknowledge levels in sender buffers.")
 
     def step(self, physical_time):
         self.receive()
-        self.acknowledge_input()
+        if self.other_public_key == None:
+            self.recognize_public_key()
+        else :
+            self.acknowledge_input()
         if self.output_buffer == None:
             self.new_message()
         if self.step_counter % config.message_timeout == 0:

@@ -11,7 +11,8 @@ class Eavesdropper(Agent):
         if message != None:
             self.set_clock(message.clock)
             self.tick()
-            self.message_list.append(message)
+            if message not in self.message_list:
+                self.message_list.append(message)
 
     def public_announcement(self):
         # TODO

@@ -24,3 +24,7 @@ class Process:
     def state(self):
         # interface
         pass
+
+    def setup(self):
+        # interface
+        pass

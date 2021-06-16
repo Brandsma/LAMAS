@@ -34,3 +34,12 @@ class Message(Process): # Is a message really a process? I don't know, but its u
     def set_clock(self, time):
         if time >= self.clock:
             self.clock = time
+
+    def get_content(self):
+        return self.content
+
+    def set_content(self, content):
+        self.content = content
+
+    def copy(self):
+        return Message(self.content, self.clock, self.acknowledge_level)

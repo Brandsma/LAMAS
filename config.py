@@ -1,11 +1,13 @@
 import logging
-loglevel = logging.WARNING
+loglevel = logging.ERROR
 
 # Configs
-stepper_time_limit = 100
+stepper_time_limit = 150
 log_trace_filename = "log_trace.txt"
-save_log_to_file = True
+save_log_to_file = False
 print_log_to_terminal = False
+print_channel_content = False
+encryption_protocol = True
 
 # failure types true/false
 # <Processes> Process halts and remains halted. Other processes may not be able to detect this state

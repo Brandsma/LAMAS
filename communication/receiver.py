@@ -8,26 +8,33 @@ class Receiver(Agent):
     def __init__(self, name):
         super().__init__(name)
 
-    def send(self):
-        if self.output_buffer != None:
-            self.back_connection.write(self.output_buffer.event(self.clock))
+# Communication
+    def send_message(self, message):
+        self.tick()
+        self.back_connection.write(message.event(self.clock))
 
-    def receive(self):
-        message = self.connection.read()
-        if message != None:
-            if self.input_buffer != None:
-                log.warning("Input buffer full, buffer overwritten.")            
-            self.set_clock(message.clock)
-            self.tick()
-            self.input_buffer = message
-            self.output_buffer = self.input_buffer.acknowledge()
-            #hacky duplicate detection first TODO make real
-            if message not in self.message_list and message.acknowledge_level == 0:
-                self.message_list.append(message)
+    def receive_message(self):
+        return self.connection.read()
+
+    def acknowledge_input(self):
+        self.output_buffer = self.input_buffer.acknowledge()
+
+# Message handling
+    def record_message(self):
+        #hacky duplicate detection first TODO make real
+        message = self.input_buffer
+        if message == None:
+            return
+        if message not in self.message_list and message.acknowledge_level == 0:
+            self.message_list.append(message)
 
     def step(self, physical_time):
         self.receive()
-        self.acknowledge_input()
+        if self.other_public_key == None:
+            self.recognize_public_key()
+        elif self.input_buffer != None:
+            self.record_message()
+            self.acknowledge_input() # NOTE: If things break, look here first
         if self.step_counter % config.message_timeout == 0:
             self.send()
 

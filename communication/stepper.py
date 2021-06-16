@@ -18,6 +18,7 @@ class Stepper:
 
     def start(self, time_limit):
         for process in self.processes:
+            process.setup()
             self.state_log.append("t: 0|"+ process.state())
         while self.physical_time < time_limit:
             for process in self.processes:

@@ -1,7 +1,7 @@
 from communication.message import Message
 from communication.process import Process
 from communication import log
-
+import config
 
 class Channel(Process):
 
@@ -58,7 +58,8 @@ class Channel(Process):
             return message
 
     def step(self, physical_time):
-        self.print_status()
+        if config.print_channel_content:
+            self.print_status()
         if self.chute != []:
             self.receive()
         if self.input_buffer != None:
