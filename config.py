@@ -2,12 +2,13 @@ import logging
 loglevel = logging.ERROR
 
 # Configs
-stepper_time_limit = 150
+stepper_time_limit = 200
 log_trace_filename = "log_trace.txt"
 save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
 encryption_protocol = True
+include_eavesdropper = True
 
 # failure types true/false
 # <Processes> Process halts and remains halted. Other processes may not be able to detect this state
@@ -35,6 +36,6 @@ eavesdropper_listen_rate = 1 # every n ticks checks for something
 
 # Sender/receiver paramters
 message_timeout = 4
-acknowledge_depth = 3 # Needs to be uneven
+acknowledge_depth = 1 # Needs to be uneven
 if acknowledge_depth % 2 == 0:
     log.error("READ THE COMMENTS, ACKNOWLEDGE DEPTH NEEDS TO BE UNEVEN!")

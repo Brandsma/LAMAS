@@ -10,7 +10,7 @@ from logic.logic_demo import logic_demo
 from communication import communication_demo
 import logging
 
-log = setup_logger(__name__, logging.WARNING)
+log = setup_logger(__name__, logging.INFO)
 
 def main():
     log.info("Starting program...")

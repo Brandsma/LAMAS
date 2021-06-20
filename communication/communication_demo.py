@@ -17,28 +17,36 @@ def communication_demo():
     bob = Receiver("Bob")
     eve = Eavesdropper("Eve")
     agents = [alice, bob, eve]
-    fc = Channel("forward")  # forward-channel
-    bc = Channel("backward")  # backward-channel
-
     stepper = Stepper()
-    stepper.add_all_processes([alice, eve, bob, fc, bc])
+
+    stepper.add_all_processes([alice, bob])
 
     # Set up connection
-    alice.connect(fc)
-    bob.connect(fc)
-    eve.connect(fc)
-    alice.connect_back(bc)
-    bob.connect_back(bc)
-    eve.connect_back(bc)
+    if config.include_eavesdropper:
+        # Create channels
+        conn_alice_eve = Channel("Alice -> Fake Bob")
+        conn_eve_alice = Channel("Fake Bob -> Alice")
+        conn_bob_eve = Channel("Bob -> Fake Alice")
+        conn_eve_bob = Channel("Fake Alice -> Bob")
+        # Connect channels to correct ports
+        alice.connect(conn_alice_eve, conn_eve_alice)
+        bob.connect(conn_bob_eve, conn_eve_bob)
+        eve.connect(conn_eve_alice, conn_alice_eve, conn_eve_bob, conn_bob_eve)
+        # Add to the stepper
+        stepper.add_all_processes([eve, conn_alice_eve, conn_eve_alice, conn_eve_bob, conn_bob_eve])
+    else :        
+        conn_ab = Channel("Alice -> Bob")  # forward-channel
+        conn_ba = Channel("Bob -> Alice")  # backward-channel
+        alice.connect(conn_ab, conn_ba)
+        bob.connect(conn_ba, conn_ab)
+        stepper.add_all_processes([conn_ab, conn_ba])
+
+    #eve.connect_incomming(fc)
+    #eve.connect_outgoing(bc)
 
     # Create dummy messages
     m_a, m_b, m_c = Message("Are my apples still okay?"), Message("Bravery is a fools honour."), Message("Can you please just not?")
     messages = [m_a, m_b, m_c]
-
-    m = Message("hallo")
-    m_a = m.acknowledge()
-    if m.acknowledge() == m_a:
-        print("THIS SHOULD WORK")
 
     # Add to sender
     alice.import_messages(messages)

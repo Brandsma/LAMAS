@@ -17,8 +17,8 @@ class Agent(Process):
         self.knowledge = []
 
         # Communication
-        self.connection = None
-        self.back_connection = None
+        self.outgoing_connection = None
+        self.incomming_connection = None
         self.output_buffer = None
         self.input_buffer = None
             # Encryption
@@ -27,12 +27,17 @@ class Agent(Process):
         self.other_public_key = None
 
 # Communication
-    def connect(self, channel):
-        self.connection = channel
+    def connect(self, outgoing, incomming): # Open-closed principle
+        self.connect_outgoing(outgoing)
+        self.connect_incomming(incomming)
 
-    # this seems pretty ugly, but I'll not mind for now, as it solves an otherwise difficult problem
-    def connect_back(self, channel):
-        self.back_connection = channel
+    # Agent writes messages to the outgoing channel
+    def connect_outgoing(self, channel):
+        self.outgoing_connection = channel
+
+    # Agent listens to messages from the incomming channel
+    def connect_incomming(self, channel):
+        self.incomming_connection = channel
 
     def send(self): # NOTE possible dependency problem -- depends on lower level function. Fixed by fixing the forward/backward connection to be sender and receiver channels
         if self.output_buffer != None:
@@ -54,6 +59,13 @@ class Agent(Process):
                 self.input_buffer = self.decrypt_message(message)
             else :
                 self.input_buffer = message
+                
+    def send_message(self, message):
+        self.tick()
+        self.outgoing_connection.write(message.event(self.clock))
+
+    def receive_message(self):
+        return self.incomming_connection.read()
 
 # Encryption
     def generate_keys(self):

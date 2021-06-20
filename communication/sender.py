@@ -14,19 +14,12 @@ class Sender(Agent):
         if len(self.message_list) == 0:
             log.info("Sender message list empty, no message passed to output buffer.")
         else :            
-            self.output_buffer = self.message_list[-1].event(self.clock)
-            self.message_list.pop()
-
-    def send_message(self, message):
-        self.tick()
-        self.connection.write(message.event(self.clock))
-
-    def receive_message(self):
-        return self.back_connection.read()
+            self.output_buffer = self.message_list[0].event(self.clock)
+            self.message_list.pop(0)
 
     def acknowledge_input(self):
         # If there is a message in the input and the output, see if one acknowledges the other and stop sending
-        log.info(self.print_buffers())
+        #log.info(self.print_buffers())
         if (self.output_buffer != None and self.input_buffer != None):
             # "I can stop sending this message, it has been acknowledged"
             if (self.input_buffer == self.output_buffer.acknowledge()):

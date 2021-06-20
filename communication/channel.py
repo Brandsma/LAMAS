@@ -84,5 +84,5 @@ class Channel(Process):
         out_ack = None if self.output_buffer == None else self.output_buffer.acknowledge_level
         chu = [m.read() for m in self.chute]
 
-        print("Channel status: clock {} | inputbuffer {} {}| chute {} | outputbuffer {} {}"
-              .format(self.clock, inp, inp_ack, chu, out, out_ack))
+        print("Channel {} status: clock {} | inputbuffer {} {}| chute {} | outputbuffer {} {}"
+              .format(self.name, self.clock, inp, inp_ack, chu, out, out_ack))

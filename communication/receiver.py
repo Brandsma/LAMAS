@@ -9,13 +9,6 @@ class Receiver(Agent):
         super().__init__(name)
 
 # Communication
-    def send_message(self, message):
-        self.tick()
-        self.back_connection.write(message.event(self.clock))
-
-    def receive_message(self):
-        return self.connection.read()
-
     def acknowledge_input(self):
         self.output_buffer = self.input_buffer.acknowledge()
 
