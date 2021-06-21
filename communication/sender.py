@@ -11,11 +11,11 @@ class Sender(Agent):
     def new_message(self):
         if self.output_buffer != None:
             log.warning("Output buffer full, new message blocked.")
-        if len(self.message_list) == 0:
+        if len(self.send_message_list) == 0:
             log.info("Sender message list empty, no message passed to output buffer.")
         else :            
-            self.output_buffer = self.message_list[0].event(self.clock)
-            self.message_list.pop(0)
+            self.output_buffer = self.send_message_list[0].event(self.clock)
+            self.send_message_list.pop(0)
 
     def acknowledge_input(self):
         # If there is a message in the input and the output, see if one acknowledges the other and stop sending
@@ -45,4 +45,4 @@ class Sender(Agent):
             self.send()
 
     def import_messages(self, messages):
-        self.message_list += messages
+        self.send_message_list += messages

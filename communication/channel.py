@@ -37,7 +37,7 @@ class Channel(Process):
             log.info("No message in chute to eavesdrop.")
             return None
 
-    def receive(self):  # perform receive action
+    def receive(self):  # perform receive action -- move message from chute to output buffer
         self.tick()
         if self.output_buffer != None:
             log.warning("Output buffer full, receive blocked.")

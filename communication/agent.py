@@ -13,7 +13,8 @@ class Agent(Process):
         self.name = name
 
         # Knowledge
-        self.message_list = []
+        self.send_message_list = []
+        self.receive_message_list = []
         self.knowledge = []
 
         # Communication
@@ -98,20 +99,25 @@ class Agent(Process):
 
     def recognize_public_key(self):
         if self.other_public_key == None and self.input_buffer != None and type(self.input_buffer.get_content()) == type(self.public_key):
+            print(f"HARHARSet other public key {self.input_buffer.get_content()}")
             self.set_other_public_key(self.input_buffer.get_content())
 
     def setup(self):
-        self.generate_keys()
-        # First message out is a public key
-        self.output_buffer = Message(self.public_key)
+        if config.encryption_protocol:
+            self.generate_keys()
+            # First message out is a public key
+            self.output_buffer = Message(self.public_key)
+            #self.send_message_list.insert(0, Message(self.public_key))
 
 # Reporters
     def state(self):
-        return " clock: {}|{}|{}|{}|{}".format( 
+        return " clock: {}|{}|{}|{}|{}|{}".format( 
             self.clock, self.name,
             self.read_buffer(self.input_buffer), self.read_buffer(
             self.output_buffer),
-            [m.read() for m in self.message_list])
+            self.message_list_content(self.send_message_list),
+            self.message_list_content(self.receive_message_list)
+            )
 
     def read_buffer(self, buffer):
         if buffer == None:
@@ -124,6 +130,10 @@ class Agent(Process):
             self.name, self.read_buffer(self.input_buffer), self.read_buffer(self.output_buffer)))
 
     def print_messages(self):
-        messages = [message.read() for message in self.message_list]
-        print("Agent {} at time {} has messages {}.".format(
-            self.name, self.clock, messages))
+        send_messages = self.message_list_content(self.send_message_list)
+        receive_messages = self.message_list_content(self.receive_message_list)
+        print(f"Agent {self.name} at time {self.clock} has messages \n{send_messages = }\n{receive_messages = }")
+
+    def message_list_content(self, message_list):
+        return [message.read() for message in message_list]
+

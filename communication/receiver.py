@@ -18,8 +18,8 @@ class Receiver(Agent):
         message = self.input_buffer
         if message == None:
             return
-        if message not in self.message_list and message.acknowledge_level == 0:
-            self.message_list.append(message)
+        if message not in self.receive_message_list and message.acknowledge_level == 0:
+            self.receive_message_list.append(message)
 
     def step(self, physical_time):
         self.receive()

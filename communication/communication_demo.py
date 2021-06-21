@@ -4,6 +4,7 @@ from .channel import Channel
 from .message import Message
 from .sender import Sender
 from .receiver import Receiver
+from .communicator import Communicator
 from .eavesdropper import Eavesdropper
 from .stepper import Stepper
 import config
@@ -13,8 +14,13 @@ def communication_demo():
     log.info("Communication demo")
 
     # Required entities
-    alice = Sender("Alice")
-    bob = Receiver("Bob")
+    if config.two_way_communication:
+        alice = Communicator("Alice", True)
+        bob = Communicator("Bob", False)
+    else:
+        alice = Sender("Alice")
+        bob = Receiver("Bob")
+
     eve = Eavesdropper("Eve")
     agents = [alice, bob, eve]
     stepper = Stepper()
@@ -50,6 +56,11 @@ def communication_demo():
 
     # Add to sender
     alice.import_messages(messages)
+
+    if config.two_way_communication and True:
+        m_d, m_e, m_f = Message("Do you even know?"), Message("Everything is nothing."), Message("Freedom forlorn.")
+        messages_b = [m_d, m_e, m_f]
+        bob.import_messages(messages_b)
 
     # Message passing
     print_all(agents)
