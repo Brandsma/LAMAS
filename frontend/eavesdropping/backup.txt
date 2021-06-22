@@ -1,0 +1,272 @@
+
+<template>
+  <div>
+    <div class="navbar topBottomBordersIn">
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Home' }"
+        :to="{ name: 'Home' }"
+        >Home</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Encryption' }"
+        :to="{ name: 'Encryption' }"
+        >Encryption</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Formalism' }"
+        :to="{ name: 'Formalism' }"
+        >Formalism</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Methods' }"
+        :to="{ name: 'Methods' }"
+        >Methods</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Simulation' }"
+        :to="{ name: 'Simulation' }"
+        >Simulation</router-link
+      >
+      |
+      <router-link
+        :class="{ button: true, activebutton: $route.name === 'Discussion' }"
+        :to="{ name: 'Discussion' }"
+        >Discussion</router-link
+      >
+    </div>
+    <div class="view">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
+    </div>
+    <img src="./assets/img/incognito_logo.png" class="bottom-right" />
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App",
+  mounted() {
+    let mathjaxScript = document.createElement("script");
+    mathjaxScript.setAttribute(
+      "src",
+      "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    );
+    mathjaxScript.setAttribute("id", "MathJax-script");
+    mathjaxScript.async = true;
+    document.head.appendChild(mathjaxScript);
+
+    window.MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+.blog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+  padding: 3em 10em;
+  background-color: white;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 100%;
+  height: auto;
+}
+
+.bottom-right {
+  position: fixed;
+  width: 6%;
+  height: auto;
+  bottom: 5px;
+  left: 5px;
+  transition: width 100ms ease-out 100ms;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.bottom-right:hover {
+  width: 7%;
+}
+
+.bottom-right:active {
+  -webkit-animation-name: wiggle;
+  animation-name: wiggle;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: skewX(9deg);
+  }
+  10% {
+    -webkit-transform: skewX(-8deg);
+  }
+  20% {
+    -webkit-transform: skewX(7deg);
+  }
+  30% {
+    -webkit-transform: skewX(-6deg);
+  }
+  40% {
+    -webkit-transform: skewX(5deg);
+  }
+  50% {
+    -webkit-transform: skewX(-4deg);
+  }
+  60% {
+    -webkit-transform: skewX(3deg);
+  }
+  70% {
+    -webkit-transform: skewX(-2deg);
+  }
+  80% {
+    -webkit-transform: skewX(1deg);
+  }
+  90% {
+    -webkit-transform: skewX(0deg);
+  }
+  100% {
+    -webkit-transform: skewX(0deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: skewX(9deg);
+  }
+  10% {
+    transform: skewX(-8deg);
+  }
+  20% {
+    transform: skewX(7deg);
+  }
+  30% {
+    transform: skewX(-6deg);
+  }
+  40% {
+    transform: skewX(5deg);
+  }
+  50% {
+    transform: skewX(-4deg);
+  }
+  60% {
+    transform: skewX(3deg);
+  }
+  70% {
+    transform: skewX(-2deg);
+  }
+  80% {
+    transform: skewX(1deg);
+  }
+  90% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0.5em 0.5em;
+  width: 100%;
+  height: 15%;
+  background: #3f51b5;
+}
+
+.hamburgernavbar {
+  display: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  font: 20px Raleway;
+  margin: 0px 10px;
+  padding: 10px 10px;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+}
+
+div.topBottomBordersIn a:before,
+div.topBottomBordersIn a:after {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+div.topBottomBordersIn a:before {
+  top: 0px;
+  transform: translateY(-10px);
+}
+
+div.topBottomBordersIn a:after {
+  bottom: 0px;
+  transform: translateY(10px);
+}
+
+div.topBottomBordersIn a:hover:before,
+div.topBottomBordersIn a:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.button {
+  color: white;
+}
+
+.activebutton {
+  color: red;
+}
+</style>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>Perfect Communication</TITLE>
+<META NAME="description" CONTENT="Perfect Communication">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="next" HREF="node3.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="main.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node3.html">Formalism</A>
+<B> Up:</B> <A
+ HREF="main.html">Private Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node1.html">About</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A ID="SECTION00020000000000000000">
+Perfect Communication</A>
+</H1>
+
+<P>
+Aquainting ourselves with the pertinent mechanisms of the perfect communication configuration, we refer to Fig. <A HREF="#fig:perf_diagram"><IMG  ALT="[*]" SRC="crossref.png"></A> and can understand the depicted actions in the following order:
+
+<P>
+
+<OL>
+<LI>A sends Public Key A to B
+</LI>
+<LI>B sends Public Key B to A
+</LI>
+<LI>A encrypts mA with pubB and sends it to B
+</LI>
+<LI>B encrypts mB with pubA and sends it to A
+</LI>
+<LI>A decrypts enMB with Private Key A
+</LI>
+<LI>B decrypts enMA with Private Key B
+</LI>
+</OL>
+
+<P>
+
+<DIV class="CENTER"><A ID="fig:perf_diagram"></A><A ID="35"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure:</STRONG>
+Perfect communication diagram.</CAPTION>
+<TR><TD><IMG STYLE=""
+ SRC="./perf_diagram.png"
+ ALT="Image perf_diagram">
+<DIV class="CENTER"></DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+What is important to understand is that both agents send their public keys to the other agent.  These public keys are associated to their own private keys, which they do not share.  Then messages can be encrypted with the opposite agent's public key such that these messages may only be decrypted by that agent's private key once they have received the message.  The intention here is to maintain private communication though encrytion.  Please refer to <SPAN  CLASS="textit">Encryption</SPAN> section for greater detail.  Also, please note that because perfect communication is assumed (free of deletion errors), no confirmation-of-knowledge messages are necessary.  However, the subsequent formalism could well be constructed atop a confirmation protocol for imperfect communication.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html21"
+  HREF="node3.html">Formalism</A>
+<LI><A ID="tex2html22"
+  HREF="node4.html">Questions for Reviewer</A>
+</UL>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="main.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node3.html">Formalism</A>
+<B> Up:</B> <A
+ HREF="main.html">Private Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node1.html">About</A></DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

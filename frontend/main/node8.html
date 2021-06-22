@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>Formalism</TITLE>
+<META NAME="description" CONTENT="Formalism">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node9.html">The Interlock Protocol</A>
+<B> Up:</B> <A
+ HREF="node7.html">Perfect Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node7.html">Perfect Communication with Eavesdropping</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00031000000000000000">
+Formalism</A>
+</H2>
+
+<P>
+In terms of epistemic logic, we now see certain nuances emerge.  What is of special interest the false belief Alice and Bob have concerning whose public key they receive.  Again, we can consider the simplified case of Alice sending one of two possible public keys, and Bob sending on of two possible messages.  Again, the logic derived here can be extended by induction.  Note that Eve's public key is also modelled, but only as one possible key.  However, this again could be expanded by induction to arbitrarily many public keys.
+
+<P>
+Considering Fig. <A HREF="#fig:perf_eve_kripke"><IMG  ALT="[*]" SRC="crossref.png"></A> from left-to-right, and then downward:
+
+<P>
+
+<UL>
+<LI>In the initial state, Bob can distinguish between no public keys and thus must consider all key nodes simultaneously possible through accessibility relations.  Bob does know the content of his own prospective message however, and so there are no lateral relations for Bob between possible messages.  While Alice cannot distinguish between possible messages of Bob, she does know the difference between her own possible keys and Eve's key and therefore has no accessibility relations between these nodes.  Eve can only between her own public key and Alice's public key at this point, and must accept all other possibilities at this point in time.
+</LI>
+<LI>After Eve receives Alice's public key she now can drop the accessibility relations between Alice's possible keys.
+</LI>
+<LI>Once Bob receives Eve's public key (thinking that it is Alice's) all key world are mutually exclusive for Bob as well.
+</LI>
+<LI>Upon receiving and decrypting his message, Eve now may distriguish all possible message nodes.
+</LI>
+<LI>Once Alice finally receives Bob's message (encrypted with Eve's key), she can decrypt it with what she thinks is Bob's public key (though it is Eve's) and finally, everyone may distinguish all possible states and the information is shared.
+</LI>
+</UL>
+
+<P>
+The obvious issue with this situation is that Alice and Bob may very well wish to keep there information private.
+
+<P>
+
+<DIV class="CENTER"><A ID="fig:perf_eve_kripke"></A><A ID="73"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure:</STRONG>
+Perfect communication with Eavesdropping diagram</CAPTION>
+<TR><TD><IMG STYLE=""
+ SRC="./perf_eve_kripke.png"
+ ALT="Image perf_eve_kripke">
+<DIV class="CENTER"></DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node9.html">The Interlock Protocol</A>
+<B> Up:</B> <A
+ HREF="node7.html">Perfect Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node7.html">Perfect Communication with Eavesdropping</A></DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>
