@@ -4,6 +4,7 @@ import Simulation from "@/views/Simulation.vue";
 import Methods from "@/views/Methods.vue";
 import Formalism from "@/views/Formalism.vue";
 import Discussion from "@/views/Discussion.vue";
+import Encryption from "@/views/Encryption.vue";
 import NotFound from "@/views/NotFound.vue";
 
 const routes = [
@@ -16,6 +17,11 @@ const routes = [
         path: "/formalism",
         name: "Formalism",
         component: Formalism,
+    },
+    {
+        path: "/encryption",
+        name: "Encryption",
+        component: Encryption,
     },
     {
         path: "/methods",

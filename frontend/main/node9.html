@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>The Interlock Protocol</TITLE>
+<META NAME="description" CONTENT="The Interlock Protocol">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="main.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node10.html">Encryption</A>
+<B> Up:</B> <A
+ HREF="main.html">Private Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node8.html">Formalism</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A ID="SECTION00040000000000000000">
+The Interlock Protocol</A>
+</H1>
+
+<P>
+In solution to potential Eves intercepting the flow of information between the Bobs and Alices of the world, we luckily may lean on the <SPAN  CLASS="textit">interlock protocol</SPAN> [<A
+ HREF="node13.html#main">1</A>].  The diagram <A HREF="#fig:interlocks_diagram"><IMG  ALT="[*]" SRC="crossref.png"></A> can be read in the following order:
+
+<P>
+
+<OL>
+<LI>A sends Public Key A to B
+</LI>
+<LI>E intercepts Public Key A
+</LI>
+<LI>E sends Public Key E to B
+</LI>
+<LI>B sends Public Key B to A
+</LI>
+<LI>E intercepts Public Key B
+</LI>
+<LI>E sends Public Key E to A
+</LI>
+<LI>A encrypts MA with PubE and sends half of mA to B
+</LI>
+<LI>E intercepts and send without modification to B
+</LI>
+<LI>B encrypts MB with PubE and sends half of mB to A
+</LI>
+<LI>E intercepts and send without modification to A
+</LI>
+<LI>A sends second half of encrypted (with E) mA to B
+</LI>
+<LI>E intercepts and sends without modification to B
+</LI>
+<LI>B sends second half of encrypted (with E) mB to A
+</LI>
+<LI>E intercepts and sends without modification to B
+</LI>
+<LI>E can decrypt the messages, as they are encrypted with E
+</LI>
+<LI>A attempts to decrypt with PrivA, but output is garbage
+</LI>
+<LI>B attempts to decrypt with PrivB, but output is garbage
+</LI>
+</OL>
+
+<P>
+
+<DIV class="CENTER"><A ID="fig:interlocks_diagram"></A><A ID="84"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure:</STRONG>
+Perfect communication with Eavesdropping diagram</CAPTION>
+<TR><TD><IMG STYLE=""
+ SRC="./interlocks_diagram.png"
+ ALT="Image interlocks_diagram">
+<DIV class="CENTER"></DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+And may be visualized with the animation below <A HREF="#animation:interlocks"><IMG  ALT="[*]" SRC="crossref.png"></A>:
+<BR>
+<BR>
+<P>
+The power of this protocol rests in its disparate partioning of any message into two interlocked messages that cannot be decrypted separately.  Therefore, the intercepting agent Eve cannot eavesdrop discretely because she cannot allow messages to pass through her seamlessly as before.  If she wishes to understand the contents of a message, she must decrypt both parts together and thus can no longer pass along the messages unperturbed.  When one Alice or Bob go to decrypt a diad of messages, the interlocking will now be scrambled and the message will be rendered meaningless, thus betraying the presence of an eavesdropping agent.  Once Bob and Alice know their line of communication is no longer safe, they may then take action to fine a new secure line for proper private communication.  
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="main.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Next:</B> <A
+ HREF="node10.html">Encryption</A>
+<B> Up:</B> <A
+ HREF="main.html">Private Communication with Eavesdropping</A>
+<B> Previous:</B> <A
+ HREF="node8.html">Formalism</A></DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,51 +1,65 @@
 <template>
   <div class="blog">
     <h2>{{ $route.name }}</h2>
+    <h1>Introduction</h1>
     <p>
-      But I must explain to you how all this mistaken idea of denouncing
-      pleasure and praising pain was born and I will give you a complete account
-      of the system, and expound the actual teachings of the great explorer of
-      the truth, the master-builder of human happiness. No one rejects,
-      dislikes, or avoids pleasure itself, because it is pleasure, but because
-      those who do not know how to pursue pleasure rationally encounter
-      consequences that are extremely painful. Nor again is there anyone who
-      loves or pursues or desires to obtain pain of itself, because it is pain,
-      but because occasionally circumstances occur in which toil and pain can
-      procure him some great pleasure. To take a trivial example, which of us
-      ever undertakes laborious physical exercise, except to obtain some
-      advantage from it? But who has any right to find fault with a man who
-      chooses to enjoy a pleasure that has no annoying consequences, or one who
-      avoids a pain that produces no resultant pleasure?
+      Communication is information in motion, the dynamics of which are
+      described by the changing knowledge and beliefs for some set of agents.
+      Remembering that knowledge is power, agents may wish to carefully control
+      the flow of information in a system by way of
+      <it>private communication</it>. This proves to be a non-trivial task when
+      a third-party agent wishes to <it>eavesdrop</it> on an information
+      exchange. The archetypical defense against eavesdropping is
+      <it>encryption</it>, whereby the true meaning of messages are disguised by
+      an encoding that is uniquely readable to the agent for which a message is
+      intended. However, an eavesdropping agent may employ a trick such that
+      communicating agents believe they are encoding messages for their partner,
+      but instead encode them for the eavesdropper. How then can private
+      communication be achieved? Can communicating agents ever know that their
+      exchange of information is indeed private?
     </p>
-
     <p>
-      On the other hand, we denounce with righteous indignation and dislike men
-      who are so beguiled and demoralized by the charms of pleasure of the
-      moment, so blinded by desire, that they cannot foresee the pain and
-      trouble that are bound to ensue; and equal blame belongs to those who fail
-      in their duty through weakness of will, which is the same as saying
-      through shrinking from toil and pain. These cases are perfectly simple and
-      easy to distinguish. In a free hour, when our power of choice is
-      untrammelled and when nothing prevents our being able to do what we like
-      best, every pleasure is to be welcomed and every pain avoided. But in
-      certain circumstances and owing to the claims of duty or the obligations
-      of business it will frequently occur that pleasures have to be repudiated
-      and annoyances accepted. The wise man therefore always holds in these
-      matters to this principle of selection: he rejects pleasures to secure
-      other greater pleasures, or else he endures pains to avoid worse pains.
+      Here we present three cases of "private communication" as outlined, along
+      with graphic simulations in the spirit of, and novel epistemic formalism.
+      First we illustrate a basic RSA encryption protocol with the case of
+      perfect, deletion-error-free communication between two agents, Alice and
+      Bob. [link: perfect communication]. We then demonstrate how this method is
+      vulnerable to breeches in privacy through belief-manipulation with the
+      introduction of an eavesdropping agent Eve [link: Eavesdropper]. Finally,
+      we present the "interlocks" protocol as a solution to the eavesdropping
+      [link: Interlocks], whereby Alice and Bob are guaranteed to become aware
+      of the presence of Eve and may therefore cease communication on that
+      compromised line.
     </p>
-
-    <img
-      class="image"
-      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.hdnicewallpapers.com%2FWalls%2FBig%2FCat%2FBeautiful_Angry_Kitten.jpg&f=1&nofb=1"
-      alt="It's a cat"
-    />
+    <p>
+      At this point, you may be asking yourself, "Why bother with privacy? I've
+      got nothing to hide." Luckily, we may refer you to [], wherein you will
+      find that you indeed do have an interest in maintaining privacy whenever
+      possible in personal communication. The need for privacy extends much
+      farther than revolutionaries, spies, and nefarious agents.
+    </p>
+    <p>
+      As aforementioned, knowledge is power. Knowledge
+      <it>about</it> us can be wielded as power <it>over</it> us. If we are
+      laissez-faire with who can listen in on our communication, then we have no
+      way of knowing what their interest in our information might be. From
+      targeted advertisement to predicting our behaviour to a deliberate
+      shifting of our political views, the more that is known about us, the more
+      effectively we may be influenced. The first step in protecting ourselves
+      from listeners with unknown intent is to know in what cases we are being
+      listened to. When are we in the presence of an Eve?
+    </p>
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      formula: "",
+    };
+  },
 };
 </script>
 

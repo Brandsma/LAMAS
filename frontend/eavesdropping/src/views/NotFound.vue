@@ -2,6 +2,7 @@
   <div
     style="
       display: flex;
+      padding-top: 100px;
       justify-content: center;
       align-items: center;
       flex-direction: column;
