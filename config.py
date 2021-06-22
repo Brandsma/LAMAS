@@ -2,13 +2,13 @@ import logging
 loglevel = logging.ERROR
 
 # Configs
-stepper_time_limit = 300
-log_trace_filename = "log_trace.txt"
+stepper_time_limit = 400
+log_trace_filename = "log_trace_new.txt"
 save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
 encryption_protocol = True
-include_eavesdropper = False
+include_eavesdropper = True
 two_way_communication = True
 
 # failure types true/false
@@ -37,6 +37,6 @@ eavesdropper_listen_rate = 1 # every n ticks checks for something
 
 # Sender/receiver paramters
 message_timeout = 4
-acknowledge_depth = 1 # Needs to be uneven for one-way communication, even for two-way communication
+acknowledge_depth = int(two_way_communication) + 1 # 2 # Needs to be uneven for one-way communication, even for two-way communication
 if acknowledge_depth % 2 == two_way_communication:
     print("Acknowledge depth needs to be uneven for one-way communication and even for two-way communication.")

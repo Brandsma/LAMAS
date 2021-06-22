@@ -98,26 +98,28 @@ class Agent(Process):
         return message, message_2
 
     def recognize_public_key(self):
-        if self.other_public_key == None and self.input_buffer != None and type(self.input_buffer.get_content()) == type(self.public_key):
-            print(f"HARHARSet other public key {self.input_buffer.get_content()}")
+        if self.other_public_key == None and self.input_buffer != None and \
+            type(self.input_buffer.get_content()) == type(self.public_key) and \
+            self.input_buffer.get_content() != self.public_key:
+            #print(f"{self.name = } Set other public key {self.input_buffer.get_content()}")
             self.set_other_public_key(self.input_buffer.get_content())
 
     def setup(self):
         if config.encryption_protocol:
             self.generate_keys()
             # First message out is a public key
-            self.output_buffer = Message(self.public_key)
-            #self.send_message_list.insert(0, Message(self.public_key))
+            if config.two_way_communication:
+                self.send_message_list.insert(0, Message(self.public_key))
+            else :  # If communication is one-way, receiver never sends their key, so it is placed in the buffer immediately
+                self.output_buffer = Message(self.public_key)
+            #print(f"{self.name = } {self.public_key}")
 
 # Reporters
     def state(self):
-        return " clock: {}|{}|{}|{}|{}|{}".format( 
-            self.clock, self.name,
-            self.read_buffer(self.input_buffer), self.read_buffer(
-            self.output_buffer),
-            self.message_list_content(self.send_message_list),
-            self.message_list_content(self.receive_message_list)
-            )
+        return  f" {self.clock = }|{self.name =}"\
+                f"|input_buffer = {self.read_buffer(self.input_buffer)}|output_buffer = {self.read_buffer(self.output_buffer)}"\
+                f"|send_message_list = {self.message_list_content(self.send_message_list)}"\
+                f"|receive_message_list = {self.message_list_content(self.receive_message_list)}"
 
     def read_buffer(self, buffer):
         if buffer == None:

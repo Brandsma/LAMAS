@@ -37,7 +37,7 @@ class Sender(Agent):
         self.receive()
         if self.other_public_key == None:
             self.recognize_public_key()
-        else :
+        if self.input_buffer != None:
             self.acknowledge_input()
         if self.output_buffer == None:
             self.new_message()

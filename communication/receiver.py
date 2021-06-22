@@ -25,7 +25,7 @@ class Receiver(Agent):
         self.receive()
         if self.other_public_key == None:
             self.recognize_public_key()
-        elif self.input_buffer != None:
+        if self.input_buffer != None:
             self.record_message()
             self.acknowledge_input() # NOTE: If things break, look here first
         if self.step_counter % config.message_timeout == 0:
