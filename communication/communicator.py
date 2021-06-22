@@ -33,7 +33,7 @@ class Communicator(Sender, Receiver):
         self.receive()
         if self.other_public_key == None and config.encryption_protocol:
             self.recognize_public_key()
-        elif self.input_buffer != None:
+        if self.input_buffer != None:
             self.record_message()
             self.acknowledge_input()
         if self.output_buffer == None and (len(self.receive_message_list) > 0 or self.initiator): # New message only if I'm not sending anything, and I've received something or I am the initiator
