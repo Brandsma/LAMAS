@@ -29,6 +29,10 @@ class Communicator(Sender, Receiver):
         elif self.input_buffer.acknowledge_level == 0 and self.output_buffer.acknowledge_level == config.acknowledge_depth:
             self.output_buffer = self.input_buffer.acknowledge()                # Acknowledge the new message
 
+        # If no acknowledge is required for a message
+        elif config.acknowledge_depth == 0:
+            self.output_buffer = None
+
     def step(self, physical_time):
         self.receive()
         if self.other_public_key == None and config.encryption_protocol:

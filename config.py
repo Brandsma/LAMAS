@@ -7,7 +7,7 @@ log_trace_filename = "log_trace_new.txt"
 save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
-encryption_protocol = True
+encryption_protocol = False
 include_eavesdropper = True
 two_way_communication = True
 
@@ -37,6 +37,6 @@ eavesdropper_listen_rate = 1 # every n ticks checks for something
 
 # Sender/receiver paramters
 message_timeout = 4
-acknowledge_depth = int(two_way_communication) + 1 # 2 # Needs to be uneven for one-way communication, even for two-way communication
+acknowledge_depth = 0#int(two_way_communication) + 1 # 2 # Needs to be uneven for one-way communication, even for two-way communication
 if acknowledge_depth % 2 == two_way_communication:
     print("Acknowledge depth needs to be uneven for one-way communication and even for two-way communication.")
