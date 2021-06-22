@@ -17,6 +17,10 @@ class Communicator(Sender, Receiver):
             if self.input_buffer.acknowledge_level < config.acknowledge_depth:
                 self.output_buffer = self.input_buffer.acknowledge()
 
+        # If no acknowledge is required for a message
+        elif config.acknowledge_depth == 0:
+            self.output_buffer = None
+
         # If I'm sending something...
         elif self.input_buffer == self.output_buffer.acknowledge():             # And input is an acknowledge of that
             if self.input_buffer.acknowledge_level < config.acknowledge_depth:  # And acknowledge depth is not reached
@@ -29,9 +33,6 @@ class Communicator(Sender, Receiver):
         elif self.input_buffer.acknowledge_level == 0 and self.output_buffer.acknowledge_level == config.acknowledge_depth:
             self.output_buffer = self.input_buffer.acknowledge()                # Acknowledge the new message
 
-        # If no acknowledge is required for a message
-        elif config.acknowledge_depth == 0:
-            self.output_buffer = None
 
     def step(self, physical_time):
         self.receive()

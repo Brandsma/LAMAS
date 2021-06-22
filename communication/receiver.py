@@ -20,6 +20,8 @@ class Receiver(Agent):
             return
         if message not in self.receive_message_list and message.acknowledge_level == 0:
             self.receive_message_list.append(message)
+            if config.interlock_protocol and type(message.read()) != type(self.public_key):
+                self.other_interlock_switch = not self.other_interlock_switch
 
     def step(self, physical_time):
         self.receive()

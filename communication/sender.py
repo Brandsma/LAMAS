@@ -15,7 +15,11 @@ class Sender(Agent):
             log.info("Sender message list empty, no message passed to output buffer.")
         else :            
             self.output_buffer = self.send_message_list[0].event(self.clock)
-            self.send_message_list.pop(0)
+            if (not config.interlock_protocol) or self.interlock_switch: # Do not pop message if interlock protocol is on and the switch is False
+                self.send_message_list.pop(0)
+            if config.interlock_protocol:
+                self.interlock_switch = not self.interlock_switch # switch the switch when sending a 'new' message (half)
+
 
     def acknowledge_input(self):
         # If there is a message in the input and the output, see if one acknowledges the other and stop sending

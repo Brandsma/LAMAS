@@ -3,7 +3,7 @@ from .event import Event
 class Process:
     
     def __init__(self):
-        self.clock = 0          # Logical system clock for event ordering, Lamport's time algorithm 
+        self.clock = 0          # Logical system clock for event ordering, Lamport's time algorithm (poorly implemented)
         self.step_counter = 0   # internal step counter, used for action rates. 
         self.event_log = []
 

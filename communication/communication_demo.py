@@ -21,14 +21,15 @@ def communication_demo():
         alice = Sender("Alice")
         bob = Receiver("Bob")
 
-    eve = Eavesdropper("Eve")
-    agents = [alice, bob, eve]
+    agents = [alice, bob]
     stepper = Stepper()
 
     stepper.add_all_processes([alice, bob])
 
     # Set up connection
     if config.include_eavesdropper:
+        eve = Eavesdropper("Eve")
+        agents.append(eve)
         # Create channels
         conn_alice_eve = Channel("Alice -> Fake Bob")
         conn_eve_alice = Channel("Fake Bob -> Alice")

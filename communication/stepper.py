@@ -23,5 +23,6 @@ class Stepper:
         while self.physical_time < time_limit:
             for process in self.processes:
                 process.step(self.physical_time)
+                process.step_counter += 1
                 self.state_log.append("t: {}|".format(self.physical_time)+process.state())
                 self.physical_time += 1
