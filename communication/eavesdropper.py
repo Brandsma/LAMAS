@@ -21,21 +21,22 @@ class Eavesdropper(Process):
             self.spoof_A = Sender("Fake Alice") # Pretends to be Alice, the sender, in communication with Bob
 
         # Knowledge
-        self.message_list = []
+        self.message_list_B = []    # Messages received from spoof_B channel
+        self.message_list_A = []    # Messages received from spoof_A channel
         self.knowledge = []
 
-    def transfer(self): # NOTE Asynchronous now, rewrite when done to sync
+    def transfer(self, receiver, sender, message_list): # NOTE Asynchronous now, rewrite when done to sync
         # If Fake Bob learned anything
-        if len(self.difference_lists(self.spoof_B.receive_message_list, self.message_list)) > 0: # if there is a difference between the lists
+        if len(self.difference_lists(receiver.receive_message_list, message_list)) > 0: # if there is a difference between the lists
             # Grab intel Fake Bob learned about
-            transfer_message = self.spoof_B.receive_message_list[-1]
+            transfer_message = receiver.receive_message_list[-1]
             
             # Transfer it to Eve's knowledge
-            self.message_list.append(transfer_message)
+            message_list.append(transfer_message)
 
             # Give it to Fake Alice to pass it on to Real Bob
-            if type(transfer_message) != type(self.spoof_B.public_key):
-                self.spoof_A.send_message_list.append(transfer_message)
+            if type(transfer_message) != type(receiver.public_key):
+                sender.send_message_list.append(transfer_message)
 
     def difference_lists(self, li1, li2):
         return [i for i in li1 + li2 if i not in li1 or i not in li2]
@@ -55,17 +56,17 @@ class Eavesdropper(Process):
     def print_messages(self):
         self.spoof_B.print_messages()
         self.spoof_A.print_messages()
-        messages = [message.read() for message in self.message_list]
-        print("Agent {} at time {} has messages {}.".format(
-            self.name, self.clock, messages))
+        messages_b = [message.read() for message in self.message_list_B]
+        messages_a = [message.read() for message in self.message_list_A]
+        print(f"Agent {self.name} at time {self.clock} has messages \n{messages_b = }\n{messages_a = }")
 
     def state(self): # Lets give these fstrings a try eh?
         return f"{self.spoof_B.state()}\n{self.spoof_A.state()}"
 
     def step(self, physical_time):
         self.spoof_B.step(physical_time)
-        self.transfer()
+        self.transfer(self.spoof_B, self.spoof_A, self.message_list_B)
         self.spoof_A.step(physical_time)
-        # if self.step_counter % config.eavesdropper_listen_rate == 0:
-        #     self.listen()
+        self.transfer(self.spoof_A, self.spoof_B, self.message_list_A)
+
         self.step_counter += 1

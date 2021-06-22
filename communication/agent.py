@@ -98,8 +98,10 @@ class Agent(Process):
         return message, message_2
 
     def recognize_public_key(self):
-        if self.other_public_key == None and self.input_buffer != None and type(self.input_buffer.get_content()) == type(self.public_key) and self.input_buffer.get_content() != self.public_key:
-            print(f"{self.name = } Set other public key {self.input_buffer.get_content()}")
+        if self.other_public_key == None and self.input_buffer != None and \
+            type(self.input_buffer.get_content()) == type(self.public_key) and \
+            self.input_buffer.get_content() != self.public_key:
+            #print(f"{self.name = } Set other public key {self.input_buffer.get_content()}")
             self.set_other_public_key(self.input_buffer.get_content())
 
     def setup(self):
@@ -110,7 +112,7 @@ class Agent(Process):
                 self.send_message_list.insert(0, Message(self.public_key))
             else :  # If communication is one-way, receiver never sends their key, so it is placed in the buffer immediately
                 self.output_buffer = Message(self.public_key)
-            print(f"{self.name = } {self.public_key}")
+            #print(f"{self.name = } {self.public_key}")
 
 # Reporters
     def state(self):

@@ -2,14 +2,14 @@ import logging
 loglevel = logging.ERROR
 
 # Configs
-stepper_time_limit = 300
+stepper_time_limit = 400
 log_trace_filename = "log_trace.txt"
 save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
 encryption_protocol = True
 include_eavesdropper = True
-two_way_communication = False
+two_way_communication = True
 
 # failure types true/false
 # <Processes> Process halts and remains halted. Other processes may not be able to detect this state
