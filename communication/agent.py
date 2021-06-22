@@ -116,13 +116,10 @@ class Agent(Process):
 
 # Reporters
     def state(self):
-        return " clock: {}|{}|{}|{}|{}|{}".format( 
-            self.clock, self.name,
-            self.read_buffer(self.input_buffer), self.read_buffer(
-            self.output_buffer),
-            self.message_list_content(self.send_message_list),
-            self.message_list_content(self.receive_message_list)
-            )
+        return  f" {self.clock = }|{self.name =}"\
+                f"|input_buffer = {self.read_buffer(self.input_buffer)}|output_buffer = {self.read_buffer(self.output_buffer)}"\
+                f"|send_message_list = {self.message_list_content(self.send_message_list)}"\
+                f"|receive_message_list = {self.message_list_content(self.receive_message_list)}"
 
     def read_buffer(self, buffer):
         if buffer == None:

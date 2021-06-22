@@ -3,7 +3,7 @@ loglevel = logging.ERROR
 
 # Configs
 stepper_time_limit = 400
-log_trace_filename = "log_trace.txt"
+log_trace_filename = "log_trace_new.txt"
 save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
