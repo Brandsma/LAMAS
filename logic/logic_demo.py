@@ -4,18 +4,25 @@ from logic.not_formula import Not
 from logic.or_formula import Or
 from logic.atom_formula import Atom
 from logic.implies_formula import Implies
+from logic.knowledge_formula import Knows
 from logic.state import State
 from logic.kripkeModel import KripkeModel
 
 log = setup_logger(__name__)
 
+
 def logic_demo():
     log.info("Logic demo")
-    and_form = Implies(And(Not(Atom(True)), Or(
-        Not(Atom(False)), Atom(True))), Atom(True))
-    print(str(and_form))
+    # knows_form = Knows("A", And(Not(Atom('P')), Or(
+    #     Not(Atom('Q')), Atom('P'))))
+    knows_form = Knows("A", Atom("P"))
+    print(str(knows_form))
 
-    state = State("12345")
+    state_A = State({'P': True, 'Q': False}, [])
+    state_B = State({'P': True, 'Q': False}, [])
+    state_A.add_relation_to_state(state_B)
+    state_B.add_relation_to_state(state_A)
+
     model = KripkeModel([], [])
 
-    print(and_form.evaluate(model, state))
+    print(knows_form.evaluate(model, state_A))
