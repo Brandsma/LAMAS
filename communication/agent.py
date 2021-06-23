@@ -26,11 +26,12 @@ class Agent(Process):
         self.private_key = None
         self.public_key = None
         self.other_public_key = None
+            # Interlocking protocol 
         self.interlock_switch = False   # Used to keep track of which half to send and when to remove a message from the message list. Switches at new message
-        # When TRUE --> access first part of the broken message to send When TRUE --> 
+            # When TRUE --> access first part of the broken message to send When TRUE --> 
         self.other_interlock_switch = False # Used to keep track of which half is sent to us so we know when to stitch. Switches at record message
         self.second_half = None
-        # When TRUE --> We have the first half stored in ciphertext, now we can concat the second part and decrypt. When FALSE --> We receive the first part, don't decrypt
+            # When TRUE --> We have the first half stored in ciphertext, now we can concat the second part and decrypt. When FALSE --> We receive the first part, don't decrypt
 
 # Communication
     def connect(self, outgoing, incomming): # Open-closed principle
@@ -50,19 +51,16 @@ class Agent(Process):
         if self.output_buffer != None:
             # And we need to encrypt it
             if config.encryption_protocol and type(self.output_buffer.get_content()) != type(self.public_key):
-                print(f"{self.name} encrypting message {self.output_buffer.read()}")
+                log.debug(f"{self.name} encrypting message {self.output_buffer.read()}")
                 message = self.encrypt_message(self.output_buffer)
             # Or we send it raw
             else :
                 message = self.output_buffer
-            # If we interlock, split the message and update the switch
-            if config.interlock_protocol and type(self.output_buffer.get_content()) != type(self.public_key) and self.interlock_switch:
-                message, self.second_half = self.split_message(message)
-            # Send either the first or second part, depending on the switch
-            elif config.interlock_protocol and type(self.output_buffer.get_content()) != type(self.public_key) and not self.interlock_switch:
-                message = self.second_half
+            # If we interlock, split the message (or ciphertext)
+            if config.interlock_protocol and type(self.output_buffer.get_content()) != type(self.public_key):
+                message = self.interlock_protocol_send(message)
             # Send the message
-            print(f"{self.name} sending message {message.read()}")
+            log.debug(f"{self.name} sending message {message.read()}")
             self.send_message(message)
         else :
             log.info("Output buffer empty, no new message passed to channel.")
@@ -76,17 +74,13 @@ class Agent(Process):
             if self.input_buffer != None:
                 log.warning("Input buffer full, buffer overwritten.")
             # If the interlock protocol is on, we need to stitch the message
-            if config.interlock_protocol and type(message.get_content()) != type(self.public_key) and self.other_interlock_switch:
-                part_1 = self.receive_message_list[-1]
-                if part_1 != message:               # TODO refractor this -- this gives incorrect behaviour as an even-character palindrome not work anymore. Solves duplication from early rounds
-                    self.receive_message_list.pop() # TODO refractor this
-                    message = self.stitch_message(part_1, message)
-            if config.encryption_protocol and type(message.get_content()) != type(self.public_key) and config.interlock_protocol and self.other_interlock_switch:
-                self.input_buffer = self.decrypt_message(message)
-            elif (not config.interlock_protocol) and config.encryption_protocol and type(message.get_content()) != type(self.public_key):
-                self.input_buffer = self.decrypt_message(message)
-            else :
-                self.input_buffer = message
+            if config.interlock_protocol and type(message.get_content()) != type(self.public_key):
+                message = self.interlock_protocol_receive(message)
+
+            elif config.encryption_protocol and type(message.get_content()) != type(self.public_key):
+                message = self.decrypt_message(message)
+
+            self.input_buffer = message
                 
     def send_message(self, message):
         self.tick()
@@ -97,6 +91,23 @@ class Agent(Process):
 
 # Interlocking protocol
     # TODO Refractor send & receive to look nicer
+    def interlock_protocol_send(self, message):
+        # Send either the first or second part, depending on the switch
+        if self.interlock_switch: # Only split the message if the switch is on.
+            message, self.second_half = self.split_message(message)
+        else :
+            message = self.second_half
+        return message
+
+    def interlock_protocol_receive(self, message):
+        if self.other_interlock_switch:
+            part_1 = self.receive_message_list[-1]
+            if part_1 != message:               # TODO refractor this -- this gives incorrect behaviour as an even-character palindrome not work anymore. Solves duplication from early rounds (same message keeps sending, so they are stiched together if not for this basecase)
+                self.receive_message_list.pop() # TODO refractor this
+                message = self.stitch_message(part_1, message)
+            if config.encryption_protocol:
+                message = self.decrypt_message(message) # Only decrypt when we've stiched the message together and we use encryption
+        return message
 
 # Encryption
     def generate_keys(self):
@@ -121,7 +132,6 @@ class Agent(Process):
 
     def split_message(self, message):
         content = message.get_content()
-        print(f"{self.name} {content = }")
         split_1, split_2 = content[0:len(content)//2], content[len(content)//2:len(content)] # Split message in half
         message_1 = message.copy()
         message_2 = message.copy()
@@ -133,14 +143,12 @@ class Agent(Process):
         split_1, split_2 = message_1.get_content(), message_2.get_content()
         message = message_2.copy()
         message.set_content(split_1 + split_2)
-        print(f"{self.name} stitching {split_1} with {split_2} for {message.read()}")
         return message
 
     def recognize_public_key(self):
         if self.other_public_key == None and self.input_buffer != None and \
             type(self.input_buffer.get_content()) == type(self.public_key) and \
             self.input_buffer.get_content() != self.public_key:
-            #print(f"{self.name = } Set other public key {self.input_buffer.get_content()}")
             self.set_other_public_key(self.input_buffer.get_content())
 
     def setup(self):
@@ -151,7 +159,6 @@ class Agent(Process):
                 self.send_message_list.insert(0, Message(self.public_key))
             else :  # If communication is one-way, receiver never sends their key, so it is placed in the buffer immediately
                 self.output_buffer = Message(self.public_key)
-            #print(f"{self.name = } {self.public_key}")
 
 # Reporters
     def state(self):
