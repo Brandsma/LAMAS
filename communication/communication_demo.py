@@ -9,9 +9,93 @@ from .eavesdropper import Eavesdropper
 from .stepper import Stepper
 import config
 from communication import log
+from os import system, name
+
+def clear_screen():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
+
+def interact_with_people():
+    # Determine situation
+    clear_screen()
+    print("Welcome to the communication demo for eavesdropping")
+    print("This program, along with the website, have been created by:")
+    print("- I.E. Steegstra")
+    print("- R.M. O'Loughlin")
+    print("- A.   Brandsma\n")
+    print("There are three possible situations to choose from:")
+    print("(Press the relevant number to run the specific situation)")
+    print(" 1 - Perfect Communication")
+    print(" 2 - Perfect Communication With Eavesdropping")
+    print(" 3 - The Interlock Protocol")
+    situation = int(input("Situation: "))
+    clear_screen()
+    if situation != 1 and situation != 2 and situation != 3:
+        print(type(situation))
+        log.error(f"The situation should be either 1, 2 or 3, not {situation}")
+        return (0, False, False)
+    
+    # Determine communication type
+    communication_type = 2
+    if situation == 1 or situation == 2:
+        print("We can either use one-way or two-way communication for these protocols")
+        print(" 1 - One-way Communication")
+        print(" 2 - Two-way Communication")
+        communication_type = int(input("Communication Type: "))
+        clear_screen()
+        if communication_type != 1 and communication_type != 2:
+            log.error(f"The communication type should be either 1 or 2, not {communication_type}")
+            return (0, False, False)
+    
+    # Determine encryption
+    print("We can use encryption or communicate using plain-text")
+    print(" 0 - Encryption off")
+    print(" 1 - Encryption on")
+    encryption_type = int(input("Encryption: "))
+    clear_screen()
+    if encryption_type != 1 and encryption_type != 0:
+        log.error(f"The encryption setting should be either 1 or 0, not {encryption_type}")
+        return (0, False, False)
+        
+    
+    return (situation, True if encryption_type == 1 else False, True if communication_type==2 else False)
+
+def set_config(situation, encryption, is_two_way_communication):
+    if situation == 1:
+        config.encryption_protocol = encryption
+        config.include_eavesdropper = False
+        config.two_way_communication = is_two_way_communication
+        config.interlock_protocol = False
+
+        return True
+    elif situation == 2:
+        config.encryption_protocol = encryption
+        config.include_eavesdropper = True
+        config.two_way_communication = is_two_way_communication
+        config.interlock_protocol = False
+        
+        return True
+    elif situation == 3:
+        config.encryption_protocol = encryption
+        config.include_eavesdropper = False
+        config.two_way_communication = is_two_way_communication
+        config.interlock_protocol = True
+        
+        return True
+    else:
+        log.error(f"No situation has been found for {situation}")
+        return False
 
 def communication_demo():
-    log.info("Communication demo")
+    if config.commandline_config_chooser:
+        situation, encryption, is_two_way_communication = interact_with_people()
+        if situation == 0:
+            return
+    
+        if not set_config(situation, encryption, is_two_way_communication):
+            return
 
     # Required entities
     if config.two_way_communication:

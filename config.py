@@ -1,16 +1,36 @@
 import logging
 loglevel = logging.ERROR
 
+commandline_config_chooser = True
+
 # Configs
 stepper_time_limit = 300
 log_trace_filename = "log_trace_new.txt"
-save_log_to_file = True
+save_log_to_file = False
 print_log_to_terminal = False
 print_channel_content = False
 encryption_protocol = True
 include_eavesdropper = False
 two_way_communication = True
 interlock_protocol = True
+
+# Channel parameters
+channel_time_delay = 0
+
+# Eavesdropper parameters
+eavesdropper_listen_rate = 1 # every n ticks checks for something
+
+# Sender/receiver paramters
+message_timeout = 1
+acknowledge_depth = 0 if interlock_protocol else int(two_way_communication) + 1 # 2 # Needs to be uneven for one-way communication, even for two-way communication
+if acknowledge_depth % 2 == two_way_communication:
+    print("Acknowledge depth needs to be uneven for one-way communication and even for two-way communication.")
+if interlock_protocol and acknowledge_depth != 0:
+    print("Interlock protocol does not work with acknowledges. Set acknowledge depth to 0.")
+    # Does not work because you can't decrypt half the ciphertext to see if it is the correct message to acknowledge
+if interlock_protocol and not two_way_communication:
+    print("Interlock protocol only works with two-way communication.")
+    quit()
 
 # failure types true/false
 # <Processes> Process halts and remains halted. Other processes may not be able to detect this state
@@ -30,20 +50,3 @@ send_omission_failure_rate = 0.1
 receive_omission = False
 receive_omission_failure_rate = 0.1
 
-# Channel parameters
-channel_time_delay = 0
-
-# Eavesdropper parameters
-eavesdropper_listen_rate = 1 # every n ticks checks for something
-
-# Sender/receiver paramters
-message_timeout = 1
-acknowledge_depth = 0#int(two_way_communication) + 1 # 2 # Needs to be uneven for one-way communication, even for two-way communication
-if acknowledge_depth % 2 == two_way_communication:
-    print("Acknowledge depth needs to be uneven for one-way communication and even for two-way communication.")
-if interlock_protocol and acknowledge_depth != 0:
-    print("Interlock protocol does not work with acknowledges. Set acknowledge depth to 0.")
-    # Does not work because you can't decrypt half the ciphertext to see if it is the correct message to acknowledge
-if interlock_protocol and not two_way_communication:
-    print("Interlock protocol only works with two-way communication.")
-    quit()

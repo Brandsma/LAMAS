@@ -3,6 +3,7 @@ from communication.agent import Agent
 from communication.sender import Sender
 from communication.receiver import Receiver
 from communication.communicator import Communicator
+from communication import log
 import config
 
 class Eavesdropper(Process):
@@ -25,7 +26,7 @@ class Eavesdropper(Process):
         self.message_list_A = []    # Messages received from spoof_A channel
         self.knowledge = []
 
-    def transfer(self, receiver, sender, message_list): # NOTE Asynchronous now, rewrite when done to sync
+    def transfer(self, receiver, sender, message_list): # Eve transfers knowledge learned on one side to the other side
         # If Fake Bob learned anything
         if len(self.difference_lists(receiver.receive_message_list, message_list)) > 0: # if there is a difference between the lists
             # Grab intel Fake Bob learned about
@@ -36,13 +37,14 @@ class Eavesdropper(Process):
 
             # Give it to Fake Alice to pass it on to Real Bob
             if type(transfer_message) != type(receiver.public_key):
+                log.debug(f"Eve transferring {transfer_message.read() = } from {receiver.name} to {sender.name}")
                 sender.send_message_list.append(transfer_message)
 
     def difference_lists(self, li1, li2):
         return [i for i in li1 + li2 if i not in li1 or i not in li2]
 
     def public_announcement(self):
-        # TODO
+        # TODO -- or not, I think we switched to another focus.
         pass
 
     def connect(self, conn_ea, conn_ae, conn_eb, conn_be,):
