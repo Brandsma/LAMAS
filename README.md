@@ -65,10 +65,17 @@ by the other party.
 
 How to run the program (basic):
 -------------------------------
-(If required install the following packages / dependencies: )
+(If required install the following packages / dependencies: logger, rsa)
 ```bash
 run "python main.py"
 ```
+The program now asks to run either of three scenarios:
+1 - Perfect Communication
+2 - Perfect Communication With Eavesdropping
+3 - The Interlock Protocol
+
+Then the program asks whether or not to include encryption and if the communication should be one or two-ways.
+
 
 "What is the output?":
 ----------------------
@@ -82,6 +89,8 @@ Note that when encryption is turned on, output can be more messy, as encryption 
 
 How to change the model / experiment with settings:
 --------------------------------------------------
+To use your own config, set the commandline_config_chooser value in the config.py file to False
+
 Most of the relevant settings can be found in the "config.py" file.
 At the top of this file the reader will find many switches for different modes of running the program:
 - encryption_protocol   (Will agents use encryption when communicating?)
