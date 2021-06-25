@@ -124,6 +124,16 @@ Stepper : Controlling entity scheduling when which process acts.
 run "python main.py"
 </pre
       >
+      <p>The program now asks to run either of three scenarios:</p>
+      <ol>
+        <li>Perfect Communication</li>
+        <li>Perfect Communication With Eavesdropping</li>
+        <li>The Interlock Protocol</li>
+      </ol>
+      <p>
+        Then the program asks whether or not to include encryption and if the
+        communication should be one or two-ways.
+      </p>
 
       <h2>"What is the output?":</h2>
       <p>
@@ -139,6 +149,10 @@ run "python main.py"
       </p>
 
       <h2>How to change the model / experiment with settings:</h2>
+      <p>
+        To use your own config, set the commandline_config_chooser value in the
+        config.py file to False
+      </p>
 
       <p>
         Most of the relevant settings can be found in the "config.py" file. At
