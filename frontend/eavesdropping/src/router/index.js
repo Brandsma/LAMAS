@@ -6,6 +6,7 @@ import Formalism from "@/views/Formalism.vue";
 import Discussion from "@/views/Discussion.vue";
 import Encryption from "@/views/Encryption.vue";
 import NotFound from "@/views/NotFound.vue";
+import References from "@/views/References.vue";
 
 const routes = [
     {
@@ -39,7 +40,12 @@ const routes = [
         component: Simulation,
     },
     {
-        path: '/:pathMatch(.*)*',
+        path: "/references",
+        name: "References",
+        component: References,
+    },
+    {
+        path: "/:pathMatch(.*)*",
         component: NotFound,
     },
 ];

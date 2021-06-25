@@ -43,20 +43,20 @@
                     <router-link
                       :class="{
                         'nav-item-child': true,
-                        activebutton: $route.name === 'Formalism',
+                        activebutton: $route.name === 'Methods',
                       }"
-                      :to="{ name: 'Formalism' }"
-                      >Formalism</router-link
+                      :to="{ name: 'Methods' }"
+                      >Methods</router-link
                     >
                   </li>
                   <li class="js_nav-item nav-item">
                     <router-link
                       :class="{
                         'nav-item-child': true,
-                        activebutton: $route.name === 'Methods',
+                        activebutton: $route.name === 'Formalism',
                       }"
-                      :to="{ name: 'Methods' }"
-                      >Methods</router-link
+                      :to="{ name: 'Formalism' }"
+                      >Formalism</router-link
                     >
                   </li>
                   <li class="js_nav-item nav-item">
@@ -77,6 +77,16 @@
                       }"
                       :to="{ name: 'Discussion' }"
                       >Discussion</router-link
+                    >
+                  </li>
+                  <li class="js_nav-item nav-item">
+                    <router-link
+                      :class="{
+                        'nav-item-child': true,
+                        activebutton: $route.name === 'References',
+                      }"
+                      :to="{ name: 'References' }"
+                      >References</router-link
                     >
                   </li>
                 </ul>
@@ -141,6 +151,24 @@ body {
   padding: 0px;
   overflow: scroll;
   overflow-x: hidden;
+  line-height: 1.5em;
+}
+
+h1 {
+  margin: 0.5em;
+}
+h2 {
+  margin: 1.5em;
+}
+h3 {
+  margin: 1em;
+}
+h4 {
+  margin: 1em;
+}
+
+it {
+  font-style: italic;
 }
 
 .blog {
@@ -160,17 +188,50 @@ body {
 .blog > ul {
   padding: 1em 9em;
 }
+.blog > ul > li {
+  /* padding: 1em 9em; */
+  margin-bottom: 0.5em;
+}
 .blog > ol {
   padding: 1em 9em;
 }
 
-.image {
+img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
   max-width: 100%;
   height: auto;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+img:hover {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  transform: scale(1.4);
+  -ms-transform: scale(1.4); /* IE 9 */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
+}
+
+img:active {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  transform: scale(1.4);
+  -ms-transform: scale(1.4); /* IE 9 */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
 }
 
 .bottom-right {
@@ -188,85 +249,6 @@ body {
 
 .bottom-right:hover {
   width: 4%;
-}
-
-.bottom-right:active {
-  -webkit-animation-name: wiggle;
-  animation-name: wiggle;
-  -webkit-animation-timing-function: ease-in;
-  animation-timing-function: ease-in;
-}
-
-@-webkit-keyframes wiggle {
-  0% {
-    -webkit-transform: skewX(9deg);
-  }
-  10% {
-    -webkit-transform: skewX(-8deg);
-  }
-  20% {
-    -webkit-transform: skewX(7deg);
-  }
-  30% {
-    -webkit-transform: skewX(-6deg);
-  }
-  40% {
-    -webkit-transform: skewX(5deg);
-  }
-  50% {
-    -webkit-transform: skewX(-4deg);
-  }
-  60% {
-    -webkit-transform: skewX(3deg);
-  }
-  70% {
-    -webkit-transform: skewX(-2deg);
-  }
-  80% {
-    -webkit-transform: skewX(1deg);
-  }
-  90% {
-    -webkit-transform: skewX(0deg);
-  }
-  100% {
-    -webkit-transform: skewX(0deg);
-  }
-}
-
-@keyframes wiggle {
-  0% {
-    transform: skewX(9deg);
-  }
-  10% {
-    transform: skewX(-8deg);
-  }
-  20% {
-    transform: skewX(7deg);
-  }
-  30% {
-    transform: skewX(-6deg);
-  }
-  40% {
-    transform: skewX(5deg);
-  }
-  50% {
-    transform: skewX(-4deg);
-  }
-  60% {
-    transform: skewX(3deg);
-  }
-  70% {
-    transform: skewX(-2deg);
-  }
-  80% {
-    transform: skewX(1deg);
-  }
-  90% {
-    transform: skewX(0deg);
-  }
-  100% {
-    transform: skewX(0deg);
-  }
 }
 
 /* Header fixed and background colors */
@@ -577,7 +559,7 @@ header .nav-item-child:focus,
   }
 
   #toggle:checked ~ .menu-mobile {
-    height: 300px;
+    height: 350px;
   }
 
   #toggle + label {

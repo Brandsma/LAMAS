@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <h2>{{ $route.name }}</h2>
+    <h1>{{ $route.name }}</h1>
     <p>
       If you want to send some piece of information to
       <it>only</it> your friend and no one else, then you will have to have some
@@ -9,28 +9,25 @@
       Encryption is the process of converting a message into a secret coded form
       that cannot be read without knowing how to decode the secret coded form
       back into the original message. There are two important takeaways from
-      this section about encryption. First of all, understanding how the most
-      widely used asymmetric public key encryption algorithm works. And
-      secondly, why we cannot decode parts of a message that have been encrypted
-      using the asymmetric encryption algorithm. Now we'll divide this section
-      up into a part about general understanding and a part about going more
-      in-depth about the subject.
+      this section about encryption. First of all, understanding how asymmetric
+      key encryption works in general. And secondly, why we cannot decode parts
+      of a message that have been encrypted using the asymmetric encryption
+      algorithm.
     </p>
 
     <p>
-      The difference between a symmetric encryption algorithm and an asymmetric
-      encryption algorithm is important. At their core, the encryption
-      algorithms can be defined as the symmetric technique having only one key,
-      while the asymmetric technique has two keys. Symmetric encryption uses one
-      key in order to <it CLASS="textit">both</it> lock and unlock a piece of
-      information. Asymmetric encryption uses one key in order to lock the
-      information and another key to unlock the information. Symmetric keys are
-      generally not preferred as they can be easily copied or stolen, especially
-      when they are being transferred to someone else who would need to decrypt
-      the information that you send them. Not only would this mean that the
-      message could be decrypted by someone else. It also means that there is no
-      way in which the receiver of a message can be sure that the message comes
-      from the original sender. This leaves us with asymmetric encryption.
+      At their core, the encryption algorithms can be defined as the symmetric
+      technique having only one key, while the asymmetric technique has two
+      keys. Symmetric encryption uses one key in order to
+      <it CLASS="textit">both</it> lock and unlock a piece of information.
+      Asymmetric encryption uses one key in order to lock the information and
+      another key to unlock the information. Symmetric keys are generally not
+      preferred as they can be easily copied or stolen, especially when they are
+      being transferred to someone else who would need to decrypt the
+      information that you send them. Not only would this mean that the message
+      could be decrypted by someone else. It also means that there is no way in
+      which the receiver of a message can be sure that the message comes from
+      the original sender. This leaves us with asymmetric encryption.
     </p>
 
     <p>Asymmetric encryption generally works as follows:</p>
@@ -49,27 +46,35 @@
     <p>
       This asymmetric key-pair gives a secure way for agents to send information
       back and forth (as long as both agents have a secure asymmetric key-pair
-      of each other).
+      of each other). Take for instance, Alice (on the left) and Bob (on the
+      right) below. Bob wants to send a message, Alice can encrypt it with her
+      public key and decrypt it with her private key.
     </p>
 
     <div class="image encryptiongif"></div>
 
     <p>
       Understanding the basic process of asymmetric cryptography is important in
-      order to understand the epistemic logic that follows from it. However, to
-      understand the Interlock protocol that will be explained later, we need to
-      have an understanding about why we cannot decode half of an encoded
-      message.
+      order to understand the epistemic logic that follows from it, specifically
+      for the interlock protocol. However, to understand the Interlock protocol
+      that will be explained later, we need to have an understanding about why
+      we cannot decode half of an encoded message.
+    </p>
+    <p>
+      The other realisation that is important is that we need the entire
+      encrypted message in order to decode it. If we break it into two, and
+      decode one of the halves, we get gibberish back. Somewhat of an analogy
+      might be found in breaking a lock in two. It becomes hard to unlock a half
+      of a lock simply because it is broken. With digital locks, a broken lock
+      cannot be unlocked (unlike real life where a broken lock does unlock the
+      thing hiding behind it).
     </p>
 
     <p>
       The following section has been added for completeness' sake. It describes
-      an example of how RSA (an encryption algorithm) works. We left this in as
-      it might help better understand why the interlock protocol works. The main
-      takeaway from this section is that half of an encoded message cannot be
-      decoded to something useful. It does not translate to half of the message,
-      but instead translates to some gibberish. The next section can safely be
-      skipped, if this is clear.
+      an example of how RSA (an asymmetric encryption algorithm) works. We left
+      this in as it might help better understand encryption. The next section
+      (hiding under the button) can safely be skipped, if encryption is clear.
     </p>
 
     <p>
@@ -243,7 +248,6 @@ export default {
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
 }
 
 .active,
@@ -265,7 +269,6 @@ export default {
   flex: 1;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   background-color: #f1f1f1;
 }
 
