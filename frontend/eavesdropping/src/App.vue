@@ -98,10 +98,13 @@
     </header>
     <div class="view">
       <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="in-out">
           <component :is="Component"></component>
         </transition>
       </router-view>
+      <!-- <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition> -->
     </div>
     <img src="./assets/img/incognito_logo.png" class="bottom-right" />
   </div>
