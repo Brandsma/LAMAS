@@ -55,7 +55,11 @@
       <math-jax :formula="'$mBq$'"></math-jax>) and send it to Alice.
     </p>
 
-    <img src="@/assets/img/perf_kripke.png" alt="Image perf_kripke" />
+    <img
+      class="img"
+      src="@/assets/img/perf_kripke.png"
+      alt="Image perf_kripke"
+    />
 
     <p>
       Alice then receives Bob's message and decrypts it with her private key,
@@ -100,6 +104,7 @@
     <math-jax :formula="'$$\\textnormal{pre}(BrA2)=A2$$'"></math-jax>
 
     <img
+      class="img"
       src="@/assets/img/perfect_communication_1.jpg"
       alt="Image perfect_communication_1"
     />
@@ -119,6 +124,7 @@
     <math-jax :formula="'$$\\textnormal{pre}(ArmBp)=mBp$$'"> </math-jax>
     <math-jax :formula="'$$\\textnormal{pre}(ArmBq)=mBq$$'"> </math-jax>
     <img
+      class="img"
       style=""
       src="@/assets/img/perfect_communication_2.jpg"
       alt="Image perfect_communication_2"
@@ -187,7 +193,11 @@
       wish to keep there information private.
     </p>
 
-    <img src="@/assets/img/perf_eve_kripke.png" alt="Image perf_eve_kripke" />
+    <img
+      class="img"
+      src="@/assets/img/perf_eve_kripke.png"
+      alt="Image perf_eve_kripke"
+    />
 
     <h3>Action Model</h3>
 
@@ -208,11 +218,16 @@
       other way around&ndash;just swap the names.
     </p>
 
+    <p>
+      We can now walk through each step of the protocol using action logic (we
+      walk through the figure below from left-to-right and from top-to-bottom):
+    </p>
+
     <ul>
       <li>
-        In the initial state (refer to the correct pictures), we have only two
-        nodes, both contain the two public keys involved in the system (Alice's
-        and Eve's) and otherwise being split between Bob's two possible message
+        In the initial state, we have only two nodes, both contain the two
+        public keys involved in the system (Alice's and Eve's) and otherwise
+        being split between Bob's two possible message
         <it> p </it> (his real message) or <it> q </it> (all other possible
         messages). On this initial state, the action-point
         <math-jax :formula="'$ErA$'"></math-jax>, related to the initial model
@@ -290,14 +305,22 @@
       and Bobs' communication.
     </p>
 
-    <img src="@/assets/img/eavesdropping_1.jpg" alt="Image eavesdropping_1" />
-    <div class="CENTER"></div>
-
-    <img src="@/assets/img/eavesdropping_2.jpg" alt="Image eavesdropping_2" />
+    <img
+      class="img"
+      src="@/assets/img/eavesdropping_1.jpg"
+      alt="Image eavesdropping_1"
+    />
     <div class="CENTER"></div>
 
     <img
-      class="final-step"
+      class="img"
+      src="@/assets/img/eavesdropping_2.jpg"
+      alt="Image eavesdropping_2"
+    />
+    <div class="CENTER"></div>
+
+    <img
+      class="img final-step"
       src="@/assets/img/eavesdropping_3.jpg"
       alt="Image eavesdropping_3"
     />
@@ -336,15 +359,17 @@
       tactic here and simply sends the message on directly.
     </p>
 
-    <p>We can now walk through each step of the protocol using action logic:</p>
+    <p>
+      We can now walk through each step of the protocol using action logic (we
+      walk through the figure below from left-to-right and from top-to-bottom):
+    </p>
 
     <p></p>
 
     <ul>
       <li>
-        In the initial state, (refer to correct pictures) there are two nodes
-        that differ based on the possible message to be sent by Bob (denoted by
-        the prepositions
+        In the initial state, there are two nodes that differ based on the
+        possible message to be sent by Bob (denoted by the prepositions
         <math-jax :formula="'$mBp$'"></math-jax>
         and
         <math-jax :formula="'$mBq$'"></math-jax>, read "message p from Bob").
@@ -437,11 +462,24 @@
       presence of an Eve? Indeed, it seems so.
     </p>
 
-    <img style="" src="@/assets/img/interlock_1.jpg" alt="Image interlock_1" />
-    <img style="" src="@/assets/img/interlock_2.jpg" alt="Image interlock_2" />
-    <img style="" src="@/assets/img/interlock_3.jpg" alt="Image interlock_3" />
     <img
-      class="final-step"
+      class="img"
+      style=""
+      src="@/assets/img/interlock_1.jpg"
+      alt="Image interlock_1"
+    />
+    <img
+      class="img"
+      src="@/assets/img/interlock_2.jpg"
+      alt="Image interlock_2"
+    />
+    <img
+      class="img"
+      src="@/assets/img/interlock_3.jpg"
+      alt="Image interlock_3"
+    />
+    <img
+      class="img final-step"
       src="@/assets/img/interlock_4.jpg"
       alt="Image interlock_4"
     />
@@ -453,6 +491,13 @@ import MathJax from "../components/MathJax.vue";
 export default {
   components: { MathJax },
   name: "Formalism",
+  mounted() {
+    try {
+      window.MathJax.typeset();
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 </script>
 

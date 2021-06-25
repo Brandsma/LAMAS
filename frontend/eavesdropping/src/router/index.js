@@ -9,51 +9,50 @@ import NotFound from "@/views/NotFound.vue";
 import References from "@/views/References.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/formalism",
-    name: "Formalism",
-    component: Formalism,
-  },
-  {
-    path: "/encryption",
-    name: "Encryption",
-    component: Encryption,
-  },
-  {
-    path: "/methods",
-    name: "Methods",
-    component: Methods,
-  },
-  {
-    path: "/discussion",
-    name: "Discussion",
-    component: Discussion,
-  },
-  {
-    path: "/simulation",
-    name: "Simulation",
-    component: Simulation,
-  },
-  {
-    path: "/references",
-    name: "References",
-    component: References,
-  },
-  {
-    path: "/:pathMatch(.*)*",
-    component: NotFound,
-  },
+    {
+        path: "/LAMAS/",
+        name: "Home",
+        component: Home,
+    },
+    {
+        path: "/LAMAS/formalism",
+        name: "Formalism",
+        component: Formalism,
+    },
+    {
+        path: "/LAMAS/encryption",
+        name: "Encryption",
+        component: Encryption,
+    },
+    {
+        path: "/LAMAS/methods",
+        name: "Methods",
+        component: Methods,
+    },
+    {
+        path: "/LAMAS/discussion",
+        name: "Discussion",
+        component: Discussion,
+    },
+    {
+        path: "/LAMAS/simulation",
+        name: "Simulation",
+        component: Simulation,
+    },
+    {
+        path: "/LAMAS/references",
+        name: "References",
+        component: References,
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: NotFound,
+    },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  base: "/eavesdropping-lamas/",
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;

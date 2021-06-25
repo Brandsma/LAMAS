@@ -152,7 +152,6 @@ body {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow: scroll;
   overflow-x: hidden;
   line-height: 1.5em;
 }
@@ -186,20 +185,34 @@ it {
 }
 
 .blog > p {
+  width: 60%;
   padding: 0.5em 6em;
 }
 .blog > ul {
+  width: 60%;
   padding: 1em 9em;
 }
 .blog > ul > li {
+  width: 60%;
   /* padding: 1em 9em; */
   margin-bottom: 0.5em;
 }
 .blog > ol {
-  padding: 1em 9em;
+  width: 60%;
+  padding: 1em 7em;
 }
 
-img {
+.method-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 100%;
+  height: auto;
+  padding-top: 5em;
+}
+
+.img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -213,28 +226,28 @@ img {
   transition: all 0.2s ease-in;
 }
 
-img:hover {
+.img:hover {
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -ms-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   opacity: 1;
-  transform: scale(1.4);
-  -ms-transform: scale(1.4); /* IE 9 */
-  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  transform: scale(1.3);
+  -ms-transform: scale(1.3); /* IE 9 */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
 }
 
-img:active {
+.img:active {
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -ms-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   opacity: 1;
-  transform: scale(1.4);
-  -ms-transform: scale(1.4); /* IE 9 */
-  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  transform: scale(1.3);
+  -ms-transform: scale(1.3); /* IE 9 */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
 }
 
 .bottom-right {
