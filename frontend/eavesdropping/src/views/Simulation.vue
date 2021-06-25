@@ -343,13 +343,13 @@ pre {
   background-color: #f1f1f1;
 }
 .content-not-hidden > p {
-  width: 100%;
+  width: 70%;
 }
 .content-not-hidden > ul {
-  width: 100%;
+  width: 60%;
 }
 
 .content-not-hidden > ol {
-  width: 100%;
+  width: 60%;
 }
 </style>

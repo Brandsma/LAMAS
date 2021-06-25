@@ -20,6 +20,10 @@
         Daniel Solove (2007). I've got nothing to hide and other
         misunderstandings of privacy. San Diego L. Rev., 44, 745.
       </li>
+      <li>
+        Teepe, W. (2006). Reconciling information exchange and confidentiality.
+        A Formal Approach,(diss. Groningen) Groningen: December.
+      </li>
     </ol>
 
     <p>
