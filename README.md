@@ -70,8 +70,11 @@ How to run the program (basic):
 run "python main.py"
 ```
 The program now asks to run either of three scenarios:
+
 1 - Perfect Communication
+
 2 - Perfect Communication With Eavesdropping
+
 3 - The Interlock Protocol
 
 Then the program asks whether or not to include encryption and if the communication should be one or two-ways.
