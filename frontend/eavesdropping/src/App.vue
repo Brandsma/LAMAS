@@ -209,7 +209,7 @@ it {
   width: 50%;
   max-width: 100%;
   height: auto;
-  padding: 1em;
+  padding-top: 5em;
 }
 
 .img {

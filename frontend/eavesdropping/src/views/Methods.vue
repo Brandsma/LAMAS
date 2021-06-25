@@ -16,26 +16,31 @@
       src="@/assets/img/encryption/1.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/encryption/2.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/encryption/3.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/encryption/4.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/encryption/5.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/encryption/6.png"
@@ -48,31 +53,37 @@
       src="@/assets/img/eavesdropping/1.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/2.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/3.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/4.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/5.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/6.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/eavesdropping/7.png"
@@ -84,21 +95,25 @@
       src="@/assets/img/interlock/1.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/interlock/2.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/interlock/3.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/interlock/4.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/interlock/5.png"
@@ -111,11 +126,13 @@
       src="@/assets/img/scenario1/1.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/scenario1/2.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/scenario1/3.png"
@@ -128,16 +145,19 @@
       src="@/assets/img/scenario2/1.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/scenario2/2.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/scenario2/3.png"
       alt="Protocol Explanation Image"
     />
+    <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
       src="@/assets/img/scenario2/4.png"
@@ -152,4 +172,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+hr {
+  width: 80%;
+  height: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #666;
+  border: 0 none;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+</style>

@@ -10,37 +10,37 @@ import References from "@/views/References.vue";
 
 const routes = [
     {
-        path: "/",
+        path: "/LAMAS/",
         name: "Home",
         component: Home,
     },
     {
-        path: "/formalism",
+        path: "/LAMAS/formalism",
         name: "Formalism",
         component: Formalism,
     },
     {
-        path: "/encryption",
+        path: "/LAMAS/encryption",
         name: "Encryption",
         component: Encryption,
     },
     {
-        path: "/methods",
+        path: "/LAMAS/methods",
         name: "Methods",
         component: Methods,
     },
     {
-        path: "/discussion",
+        path: "/LAMAS/discussion",
         name: "Discussion",
         component: Discussion,
     },
     {
-        path: "/simulation",
+        path: "/LAMAS/simulation",
         name: "Simulation",
         component: Simulation,
     },
     {
-        path: "/references",
+        path: "/LAMAS/references",
         name: "References",
         component: References,
     },
@@ -52,7 +52,6 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    base: "/LAMAS/",
     routes,
 });
 
