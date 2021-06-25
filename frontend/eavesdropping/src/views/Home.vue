@@ -25,21 +25,31 @@
       perfect, deletion-error-free communication between two agents, Alice and
       Bob. We then demonstrate how this method is vulnerable to breeches in
       privacy through belief-manipulation with the introduction of an
-      eavesdropping agent Eve. Finally, we present the "interlocks" protocol
+      eavesdropping agent Eve. Finally, we present the "interlock" protocol
       [<router-link :to="{ name: 'References' }">2</router-link>] as a solution
       to the eavesdropping, whereby Alice and Bob are guaranteed to become aware
       of the presence of Eve and may therefore cease communication on that
       compromised line.
     </p>
     <p>
+      On this website you will find an introduction to encryption, an
+      illustrated walkthrough of how basic asymmetric encrypted communication
+      works, what happens when an eavesdropper intrudes undetected in the
+      process of communication and how employing the interlock protocol ensures
+      the eavesdropper cannot remain an undetectable observing party. We will
+      provide a formalism of the eavesdropping situation, formalized with a
+      dynamic epistemic logic explanation. Furthermore, you will find an
+      extensive simulation model (written in Python 3.9) which models these
+      scenarios. This model can also provide a solid base model for further
+      study and experimentation.
+    </p>
+    <p>
       At this point, you may be asking yourself, "Why bother with privacy? I've
-      got nothing to hide." Luckily, we may refer you to [<router-link
-        :to="{ name: 'References' }"
-        >4</router-link
-      >], wherein you will find that you indeed do have an interest in
-      maintaining privacy whenever possible in personal communication. The need
-      for privacy extends much farther than revolutionaries, spies, and
-      nefarious agents. <br />
+      got nothing to hide." Luckily, we may refer you to a paper by Solove
+      [<router-link :to="{ name: 'References' }">4</router-link>], wherein you
+      will find that you indeed do have an interest in maintaining privacy
+      whenever possible in personal communication. The need for privacy extends
+      much farther than revolutionaries, spies, and nefarious agents. <br />
       As aforementioned, knowledge is power. Knowledge
       <it>about</it> us can be wielded as power <it>over</it> us. If we are
       laissez-faire with who can listen in on our communication, then we have no

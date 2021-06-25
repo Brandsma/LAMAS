@@ -14,10 +14,12 @@
       possible message as his actual message, and the second possible message as
       all possible other messages. The logic and relations work the same whether
       these secondary keys and messages are inductively expanded or collapsed.
-      For a similar example of "inductive collapse", we refer the reader to
-      [<router-link :to="{ name: 'References' }">1</router-link>]. As a final
-      note, the reflexivity relationships have not been drawn for simplicity's
-      sake.
+      For a similar example of "inductive collapse", we refer the reader to a
+      Dynamic Epistemic Logic paper by Gattinger [<router-link
+        :to="{ name: 'References' }"
+        >1</router-link
+      >]. As a final note, the reflexivity relationships have not been drawn for
+      simplicity's sake.
     </p>
 
     <p>
@@ -82,7 +84,8 @@
       <it>S5-Kripke structures</it>, but rather
       <math-jax :formula="'$\\mathbb{L}_{KC\\otimes}$'"></math-jax> , which
       includes everything from <it>S5</it> and in addition adds the concept of
-      <it>actions</it>. For more information about this subject, see
+      <it>actions</it>. For more information about this subject, see this
+      Dynamic Epistemic Logic book by Van Ditmarsch, Van Der Hoek and Kooi
       [<router-link :to="{ name: 'References' }">3</router-link>].
     </p>
 

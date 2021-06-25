@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <h1>{{ $route.name }}</h1>
+    <h1>Mechanics</h1>
 
     <p>
       This section gives a visual explanation of each individual situation that
@@ -148,7 +148,7 @@
     <div class="hr">_____________________________________________</div>
     <img
       class="method-img"
-      src="@/assets/img/scenario2/2.png"
+      src="@/assets/img/scenario2/2_new.png"
       alt="Protocol Explanation Image"
     />
     <div class="hr">_____________________________________________</div>

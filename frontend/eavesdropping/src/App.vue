@@ -46,7 +46,7 @@
                         activebutton: $route.name === 'Methods',
                       }"
                       :to="{ name: 'Methods' }"
-                      >Methods</router-link
+                      >Mechanics</router-link
                     >
                   </li>
                   <li class="js_nav-item nav-item">
@@ -190,16 +190,15 @@ it {
 }
 .blog > ul {
   width: 60%;
-  padding: 1em 9em;
+  padding: 1em 4em;
 }
 .blog > ul > li {
-  width: 60%;
-  /* padding: 1em 9em; */
+  /* padding: 1em 4em; */
   margin-bottom: 0.5em;
 }
 .blog > ol {
   width: 60%;
-  padding: 1em 7em;
+  padding: 1em 4em;
 }
 
 .method-img {
